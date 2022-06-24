@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.abd64e84.css",
+    "main.js": "/static/js/main.de3d7a5d.js",
+    "static/media/circleLogo.jpg": "/static/media/circleLogo.b87d529cb66aa63d67bc.jpg",
+    "index.html": "/index.html",
+    "main.abd64e84.css.map": "/static/css/main.abd64e84.css.map",
+    "main.de3d7a5d.js.map": "/static/js/main.de3d7a5d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abd64e84.css",
+    "static/js/main.de3d7a5d.js"
+  ]
+}
