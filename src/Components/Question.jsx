@@ -2,23 +2,10 @@ import {
   Box,
   Button,
   Heading,
-  TextStack,
-  HStack,
   VStack,
   Text,
-  StackDivider,
-  Center,
 
-} from "@chakra-ui/react";
-
-import questions from "../Questions";
-import React, { useState } from "react";
-import { extendTheme } from "@chakra-ui/react";
-import Addmembers from "./Addmembers";
-import { HiPlusSm } from 'react-icons/hi';
-import AddQuestion from "./AddQuestion";
-
-import {
+  HStack,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -28,14 +15,25 @@ import {
   ModalFooter,
   useDisclosure,
   IconButton,
+
 } from "@chakra-ui/react";
-import Questions from "../Questions";
-import Drøyhetsskala from "./Drøyhetsskala";
+
+import questions from "../Questions";
+import React, { useState } from "react";
+import Addmembers from "./Addmembers";
+import AddQuestion from "./AddQuestion";
+import Droyhetsskala from "./Droyhetsskala";
+import { FiSettings } from 'react-icons/fi'
+import Settings from "./Settings";
+
+
 
 
 function Question() {
   const [count, setCount] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure(false);
+  const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
+
 
   const customQuestion = questions[count];
   const header = questions[count].header;
@@ -47,8 +45,9 @@ function Question() {
   if (!(Object.keys(questions[count]).includes("header"))) {
     return (
 
+
       <Button
-        bg="red.500"
+        bgGradient='linear(to-t, #f56038, #ffca7a)'
         _hover={{ bg: "" }}
         variant='outline'
         h="100vh"
@@ -60,13 +59,14 @@ function Question() {
           <VStack spacing={4}>
             <Heading></Heading>
 
-            <Text h='30px '> {customQuestion} </Text>
+            <Text color="white" fontSize='2xl' h='30px '> {customQuestion} </Text>
 
             <Text h='30px' as='i'></Text>
 
             <AddQuestion count={count}></AddQuestion>
-            <Button w='200px' rightIcon={<HiPlusSm />} onClick={onOpen} variant='outline' _hover='ghost' aria-label='Search database' fontSize='18px'> Legg til spillere </Button>
+
             <Addmembers isOpen={isOpen} onOpen={onOpen} onClose={onClose}> </Addmembers>
+
 
           </VStack>
 
@@ -82,8 +82,10 @@ function Question() {
 
     return (
 
+
+
       <Button
-        bg='red'
+        bgGradient='linear(to-tr, #cc4e00, #ffad33)'
         _hover={{ bg: "" }}
         variant='outline'
         h="100vh"
@@ -91,18 +93,19 @@ function Question() {
         onClick={() => setCount(count + 1)}
       >
 
-        <Box w='0px'>
+
+        <Box >
           <VStack spacing={4}>
 
             <Heading color="white">{header}</Heading>
 
-            <Text h='30px ' color="white">{content}</Text>
+            <Text fontSize='xl' h='40px ' color="white">{content}</Text>
 
-            <Text h='30px' as='i' color="white">{description}</Text>
+            <Text h='40px' as='i' color="white">{description}</Text>
 
-            <AddQuestion count={count}></AddQuestion>
-            <Button w='200px' rightIcon={<HiPlusSm />} onClick={onOpen} variant='solid' _hover='ghost' aria-label='Search database' fontSize='18px'> Legg til spillere </Button>
-            <Addmembers isOpen={isOpen} onOpen={onOpen} onClose={onClose}> </Addmembers>
+            <AddQuestion></AddQuestion>
+
+            <Settings></Settings>
 
 
 

@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
-import Drøyhetsskala from "./Drøyhetsskala";
+import Droyhetsskala from "./Droyhetsskala";
 
 
 
@@ -49,7 +49,7 @@ function MainPage() {
                         started ?
 
                             <VStack spacing='60px'>
-                                <Drøyhetsskala > </Drøyhetsskala>
+                                <Droyhetsskala > </Droyhetsskala>
                                 <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                             </VStack> :
 
@@ -58,6 +58,7 @@ function MainPage() {
                                 align='stretch'
                             >
 
+                                <Addmembers></Addmembers>
                                 <Button onClick={() => setStarted(true)}>
                                     Start
                                 </Button>
