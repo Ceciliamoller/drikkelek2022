@@ -8,12 +8,13 @@ import customTheme from "./extendTheme";
 import Banner from "./Components/Banner";
 import Question from "./Components/Question";
 import Start from "./Components/Start";
+import MainPage from "./Components/MainPage";
 
 function App() {
   return (
-    <Center bg="white" h="100vh" w="100%">
-      <Question />
-    </Center>
+    <Box>
+    <MainPage> </MainPage>
+    </Box>
   );
 }
 
