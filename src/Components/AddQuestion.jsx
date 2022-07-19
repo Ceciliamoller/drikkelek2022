@@ -1,13 +1,7 @@
 import {
     Box,
     Button,
-    Heading,
-    TextStack,
     HStack,
-    VStack,
-    Text,
-    StackDivider,
-    Center,
     Modal,
     ModalContent,
     ModalOverlay,
@@ -21,8 +15,6 @@ import {
 //import circleLogo from '../Assets/circleLogo.jpg';
 import questions from "../Questions";
 import React, { useState } from "react";
-import { extendTheme } from "@chakra-ui/react";
-import Questions from "../Questions";
 import { HiPlusSm } from 'react-icons/hi';
 
 function AddQuestion({ count }) {
@@ -34,10 +26,12 @@ function AddQuestion({ count }) {
     const { isOpen, onOpen, onClose } = useDisclosure(false);
 
     function addQuestion(question) {
-        var rand_index = Math.random() * (count + 1 - count + 11) + count + 1; //tall mellom count+1 og count+11
+        var rand_index = Math.floor(Math.random() * ((count + 11) - count + 2)) + count + 1; //tall mellom count+1 og count+11
         questions.splice(rand_index, 0, question);
         //setquestions(questions.concat(Question))
     }
+
+    /*
 
     function clearF() { //kode hentet fra https://www.delftstack.com/howto/javascript/javascript-clear-input/
         var grab = document.getElementBy("name");
@@ -45,12 +39,11 @@ function AddQuestion({ count }) {
             grab.target.value = "";
         }
     }
-
-    console.log(isOpen)
+*/
 
 
     return (
-        <Button w='200px' rightIcon={<HiPlusSm />} onClick={onOpen} variant='solid' _hover='ghost' aria-label='Search database' fontSize='18px'> Legg til spørsmål
+        <Button w='200px' rightIcon={<HiPlusSm />} onClick={onOpen} variant='solid' aria-label='Search database' fontSize='18px'> Legg til spørsmål
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -58,7 +51,8 @@ function AddQuestion({ count }) {
                     <ModalCloseButton />
                     <ModalBody>
 
-                        <Input placeholder='Spørsmål' id='name' onFocus="this.value=''" onChange={(event) => setLatestQuestion(event.target.value)} />
+                        <Input placeholder='Spørsmål' id='name' onChange={
+                            (event) => setLatestQuestion(event.target.value)} />
 
 
                     </ModalBody>
