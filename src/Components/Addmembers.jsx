@@ -53,7 +53,7 @@ function Addmembers() {
     <>
       <Button size='lg' onClick={onOpen}>Legg til spillere
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} size="xs" >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Legg til spiller</ModalHeader>
@@ -68,7 +68,7 @@ function Addmembers() {
             <ModalFooter>
 
               <HStack parcing='10px'>
-                <Box w='200px'>
+                <Box w='100px'>
                   {members.join(", ")}
                 </Box>
 

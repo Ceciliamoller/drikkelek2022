@@ -21,7 +21,7 @@ function Droyhetsskala() {
     //var newDifficulty = 5;
     return (
         <Box>
-            <Heading color='white' size='s' >   Velg drøyhetsnivå: </Heading>
+            <Heading color='black' size='s' >   Velg drøyhetsnivå: </Heading>
             <Slider defaultValue={5} min={1} max={10} w='250px' onChange={
                 (val) => setnewDifficulty(val)
             } >

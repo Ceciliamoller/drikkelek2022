@@ -35,9 +35,12 @@ function Settings() {
             fontSize='40px'
             color='white'
             variant='ghost'
-            onClick={onSettingsOpen} >
+            onClick={(e) => {
+                e.stopPropagation();
+                onSettingsOpen();
+            }} >
 
-            <Modal isOpen={isSettingsOpen} onClose={onSettingsClose}>
+            <Modal isOpen={isSettingsOpen} onClose={onSettingsClose} size="sm" >
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader> Innstillinger </ModalHeader>

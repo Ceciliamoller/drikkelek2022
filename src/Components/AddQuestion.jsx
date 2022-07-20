@@ -43,15 +43,20 @@ function AddQuestion({ count }) {
 
 
     return (
-        <Button w='200px' rightIcon={<HiPlusSm />} onClick={onOpen} variant='solid' aria-label='Search database' fontSize='18px'> Legg til spørsmål
-            <Modal isOpen={isOpen} onClose={onClose}>
+        <Button w='200px' rightIcon={<HiPlusSm />}
+            onClick={(e) => {
+                e.stopPropagation();
+                onOpen();
+            }}
+            variant='solid' aria-label='Search database' fontSize='18px'> Legg til utfordring
+            <Modal isOpen={isOpen} onClose={onClose} size="xs" >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Legg spørsmål/utfordring</ModalHeader>
+                    <ModalHeader>Legg til utfordring</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
 
-                        <Input placeholder='Spørsmål' id='name' onChange={
+                        <Input placeholder='Utfordring' id='name' onChange={
                             (event) => setLatestQuestion(event.target.value)} />
 
 

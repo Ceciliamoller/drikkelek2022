@@ -59,7 +59,10 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
   return array;
 }
 
-function setMemberQuestions(array) {
+function setMemberQuestions(array, count) {
+
+  console.log("setmemberquestions aktivert");
+  array = array.filter(n => n);
 
 
   array.forEach(element => {
@@ -68,21 +71,26 @@ function setMemberQuestions(array) {
     //var randMember = members[Math.floor(Math.random() * members.length)];
     if (Object.keys(element).includes("value")) { //ser bort fra alle egendefinerte
 
+
       if (Object.values(element)[2].includes("memb")) { //ser bort fra alle som ikke er navn-spesifikke
 
         if (members.length > 1) {
           var newElement = Object.values(element)[2].toString().replace(/memb/i, members[0]);
           newElement = newElement.replace(/memb2/gi, members[1]);
-          array = array.concat(newElement);
-          console.log("navn spesifisert?");
-          console.log(newElement);
+          //array = array.concat(newElement);
+
+          console.log("navn funnet");
+          //console.log(newElement);
         }
         const index = array.indexOf(element); //alle navnspesifikke fjernes dersom antall medlemmer er under 2. 
-        array.splice(index, 1);               // hvis ikke concattes de til listen for de fjernes (over)
+        array.splice(index, 1, newElement);               // hvis ikke concattes de til listen for de fjernes (over)
       }
     }
   })
-  array.filter(n => n);
+  //array.filter(n => n);
+  console.log(array);
+
+  array = array.filter(n => n);
 
   return array;
 }
@@ -90,47 +98,58 @@ function setMemberQuestions(array) {
 
 function Question() {
   const [count, setCount] = useState(0);
-  const [difficulty, setDifficulty] = useState(5);
+  //const [difficulty, setDifficulty] = useState(5);
   const [filteredQuestions, setFilteredQuestions] = useState(setMemberQuestions(questions));
-  const { isOpen, onOpen, onClose } = useDisclosure(false);
-  const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
+  //const { isOpen, onOpen, onClose } = useDisclosure(false);
+  //const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
 
   const customQuestion = filteredQuestions[count];
-  const header = filteredQuestions[count].header;
-  const content = filteredQuestions[count].content;
+  //const header = filteredQuestions[count].header;
+  //const content = filteredQuestions[count].content;
+  /*
   const description = Object.keys(filteredQuestions[count]).includes("description")
     ? filteredQuestions[count].description
     : undefined;
+    */
 
 
   if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
     return (
 
-      <Button
-        bgGradient='linear(to-t, #f56038, #ffcb7e)'
+      <Center
+        bgGradient='linear(to-tr, #f56038, #ffca7a)'
         _hover={{ bg: "" }}
-        variant='ghost'
-        h="107vh"
+        variant='outline'
+        h="100%"
         w="100%"
-        onClick={() => setCount(count + 1)}
+        padding="5"
+        onClick={
+          () => {
+            setCount(count + 1);
+            setFilteredQuestions(setMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
+            console.log(filteredQuestions);
+          }
+
+        }
       >
-
-        <Box w='0px'>
-          <VStack spacing={4}>
-            <Heading></Heading>
-
-            <Text h='30px' as='i' fontSize='xl' color='white'  > {customQuestion} </Text>
-
-            <AddQuestion count={count}></AddQuestion>
-
-            <Settings onClick={() => setFilteredQuestions(setMemberQuestions(filteredQuestions))} ></Settings>
+        <VStack spacing={5} w="100%">
 
 
-          </VStack>
+          <Heading color="white" textAlign="center"> Utfordring </Heading>
 
-        </Box>
+          <Box pb="50px" >
+            <Text color="white" fontSize='xl' textAlign="center"
+              w="100%"
 
-      </Button >
+            >{customQuestion}  </Text>
+          </Box>
+
+          <AddQuestion count={count} ></AddQuestion>
+          <Settings  ></Settings>
+
+        </VStack>
+
+      </Center >
     )
   }
 
@@ -145,24 +164,31 @@ function Question() {
         h="100%"
         w="100%"
         padding="5"
-        onClick={() => setCount(count + 1)}
+        onClick={
+          () => {
+            setCount(count + 1);
+            setFilteredQuestions(setMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
+            console.log(filteredQuestions);
+          }
+        }
       >
+        <VStack spacing={5} w="100%">
 
-        <VStack spacing={4} w="100%">
+          <Heading color="white" textAlign="center">{filteredQuestions[count].header}</Heading>
 
-          <Heading color="white" textAlign="center">{header}</Heading>
+          <Box pb="50px" >
+            <Text color="white" fontSize='xl' textAlign="center"
+              w="100%"
+
+            >{filteredQuestions[count].content}  </Text>
+          </Box>
 
 
-          <Text color="white" fontSize='xl' textAlign="center"
-            w="100%"
-
-          >{content}  </Text>
 
 
-          <Text h='30px' as='i' color="white">{description}</Text>
-
-          <AddQuestion count={count}></AddQuestion>
-          <Settings onClick={() => setFilteredQuestions(setMemberQuestions(filteredQuestions))}></Settings>
+          <AddQuestion count={count} ></AddQuestion>
+          <Settings  ></Settings>
+          ´
 
         </VStack>
 
