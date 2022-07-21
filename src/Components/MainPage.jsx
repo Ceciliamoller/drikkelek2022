@@ -35,7 +35,7 @@ function MainPage() {
                     <>  <Question /> </> :
 
                     started ?
-                        <VStack mt="500px" h='100%' spacing="100px" w="100%">
+                        <VStack mt="500px" h='100%' spacing="50px" w="100%">
                             <Droyhetsskala > </Droyhetsskala>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                         </VStack> :

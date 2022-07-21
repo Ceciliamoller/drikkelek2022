@@ -581,7 +581,7 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
       array[randomIndex], array[currentIndex]];
   }
 
-  console.log(array.length + " endelig lengde")
+  
   return array;
 }
 
