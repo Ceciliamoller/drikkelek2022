@@ -3,17 +3,12 @@ import "../App.css";
 import React, { useState } from "react";
 import {
     Center, Button, useDisclosure, VStack, Box,
-    Heading,
-    Text,
-    Image,
 } from "@chakra-ui/react";
 import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
 import Droyhetsskala from "./Droyhetsskala";
 
-import circleLogo from '../Assets/circleLogo.jpg';
 import StartsideNidarus from '../Assets/StartsideNidarus.PNG';
-import TittelNidarus from '../Assets/StartsideNidarus.PNG';
 
 
 
@@ -35,7 +30,7 @@ function MainPage() {
 
     return (
         <Box backgroundImage={StartsideNidarus} id="x" h='100vh' backgroundPosition="center"
-            spacing='20px' w="100vw" backgroundRepeat="no-repeat" backgroundSize="cover" backgroundAttachment="fixed" >
+            spacing='20px' w="100vw" backgroundRepeat="no-repeat" backgroundSize="cover"  >
 
 
 
@@ -46,8 +41,8 @@ function MainPage() {
                     <>  <Question /> </> :
 
                     started ?
-                        <VStack mt="500px" h='100%' w="100%">
-                            <Box bg="#f3a040" p='6'>
+                        <VStack h='100%' w="100%">
+                            <Box mt="250px" bg="#f3a040" p='6'>
                                 <Droyhetsskala myColor='white' > </Droyhetsskala>
                             </Box>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
@@ -57,7 +52,6 @@ function MainPage() {
                             spacing={4}
                             align='stretch'
                         >
-
 
                             <Button onClick={() => setStarted(true)}>
                                 Start

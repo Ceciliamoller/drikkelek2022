@@ -1,13 +1,7 @@
 import {
   Box,
   Button,
-  Heading,
-  TextStack,
   HStack,
-  VStack,
-  Text,
-  StackDivider,
-  Center,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -19,9 +13,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 //import circleLogo from '../Assets/circleLogo.jpg';
-import questions from "../Questions";
 import React, { useState } from "react";
-import { extendTheme } from "@chakra-ui/react";
 import members from "../Members";
 
 
@@ -29,7 +21,7 @@ function Addmembers() {
   //kilde: https://chakra-ui.com/docs/components/modal
 
   //const [members, setMembers] = useState([]);
-  const [membersCopy, setMembersCopy] = useState([]);
+  //const [membersCopy, setMembersCopy] = useState([]);
   const [latestMember, setLatestMember] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure(false);
 
@@ -39,12 +31,14 @@ function Addmembers() {
     members.join(", ");
   }
 
+  /*
   function clearF() { //kode hentet fra https://www.delftstack.com/howto/javascript/javascript-clear-input/
     var grab = document.getElementBy("name");
     if (grab.target.value !== "") {
       grab.target.value = "";
     }
   }
+  */
 
   console.log(isOpen)
 

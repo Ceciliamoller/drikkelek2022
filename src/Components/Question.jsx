@@ -1,10 +1,8 @@
 import {
   Box,
-  Button,
   Heading,
   VStack,
   Text,
-  useDisclosure,
   Center,
 
 } from "@chakra-ui/react";
@@ -102,6 +100,12 @@ function Question() {
     : undefined;
     */
 
+  if (count === 0 && Object.values(filteredQuestions[count])[0].includes("Navn-spesifikt")) {
+    setCount(count + 1);
+    console.log("det gikk!")
+  };
+
+
 
   if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
     return (
@@ -164,6 +168,7 @@ function Question() {
             console.log("FQ skal være slik: ", filterDifficulty(setMemberQuestions(questionsCopy)));
             console.log(questionsCopy);
             console.log("FQ ekte: ", filteredQuestions);
+            console.log("her: ", Object.values(filteredQuestions[count])[0])
           }
         }
       >

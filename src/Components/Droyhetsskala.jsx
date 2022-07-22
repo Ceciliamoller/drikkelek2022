@@ -6,11 +6,9 @@ import {
     SliderMark,
     Box,
     Heading,
-    Button,
-    Text,
 
 } from '@chakra-ui/react'
-import React, { useState } from "react";
+import React from "react";
 //import questions from '../Questions';
 import { FaBeer } from 'react-icons/fa';
 

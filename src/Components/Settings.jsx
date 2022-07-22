@@ -1,7 +1,6 @@
 import {
     Box,
     Button,
-    Heading,
     VStack,
     Text,
 
@@ -11,17 +10,13 @@ import {
     ModalOverlay,
     ModalCloseButton,
     ModalHeader,
-    ModalBody,
     ModalFooter,
     useDisclosure,
-    IconButton,
 
 } from "@chakra-ui/react";
 
-import questions from "../Questions";
-import React, { useState } from "react";
+import React from "react";
 import Addmembers from "./Addmembers";
-import AddQuestion from "./AddQuestion";
 import Drøyhetsskala from "./Droyhetsskala";
 import { FiSettings } from 'react-icons/fi'
 
