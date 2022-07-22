@@ -5,10 +5,16 @@ import {
     Center, Button, useDisclosure, VStack, Box,
     Heading,
     Text,
+    Image,
 } from "@chakra-ui/react";
 import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
 import Droyhetsskala from "./Droyhetsskala";
+
+import circleLogo from '../Assets/circleLogo.jpg';
+import StartsideNidarus from '../Assets/StartsideNidarus.PNG';
+import TittelNidarus from '../Assets/StartsideNidarus.PNG';
+
 
 
 
@@ -17,6 +23,7 @@ import Droyhetsskala from "./Droyhetsskala";
 
 function MainPage() {
 
+
     const { isOpen, onOpen, onClose } = useDisclosure(false);
 
 
@@ -24,8 +31,12 @@ function MainPage() {
     const [finalStarted, setFinalStarted] = useState(false);
 
 
+
+
     return (
-        <Box bg="#f7a325" h='100vh' spacing='20px' w="100vw">
+        <Box backgroundImage={StartsideNidarus} id="x" h='100vh' backgroundPosition="center"
+            spacing='20px' w="100vw" backgroundRepeat="no-repeat" backgroundSize="cover" backgroundAttachment="fixed" >
+
 
 
 
@@ -35,8 +46,10 @@ function MainPage() {
                     <>  <Question /> </> :
 
                     started ?
-                        <VStack mt="500px" h='100%' spacing="50px" w="100%">
-                            <Droyhetsskala > </Droyhetsskala>
+                        <VStack mt="500px" h='100%' w="100%">
+                            <Box bg="#f3a040" p='6'>
+                                <Droyhetsskala myColor='white' > </Droyhetsskala>
+                            </Box>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                         </VStack> :
 
@@ -44,13 +57,12 @@ function MainPage() {
                             spacing={4}
                             align='stretch'
                         >
-                            <Heading color="white" size="3xl" >
-                                Lambo
-                            </Heading>
-                            <Addmembers></Addmembers>
+
+
                             <Button onClick={() => setStarted(true)}>
                                 Start
                             </Button>
+                            <Addmembers></Addmembers>
                         </VStack>
                 }
             </Center>

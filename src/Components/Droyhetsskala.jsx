@@ -17,12 +17,12 @@ import { FaBeer } from 'react-icons/fa';
 
 var difficulty = 5;
 
-function Droyhetsskala() {
+function Droyhetsskala({ myColor }) {
     //var [newDifficulty, setnewDifficulty] = useState(5);
     //var newDifficulty = 5;
     return (
         <Box >
-            <Heading color='black' size='s' mb="15px" >   Velg drøyhetsnivå: </Heading>
+            <Heading color={myColor} size='s' mb="15px" >   Velg drøyhetsnivå: </Heading>
             <Slider mb="40px" defaultValue={difficulty} min={1} max={10} w='250px' onChange={
                 (val) => {
 
@@ -37,35 +37,35 @@ function Droyhetsskala() {
 
 
                 <SliderThumb boxSize={6}> <Box color='tomato' as={FaBeer}> </Box> </SliderThumb>
-                <SliderMark value={1} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={1} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     1
                 </SliderMark>
-                <SliderMark value={2} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={2} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     2
                 </SliderMark>
-                <SliderMark value={3} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={3} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     3
                 </SliderMark>
-                <SliderMark value={4} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={4} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     4
                 </SliderMark>
-                <SliderMark value={5} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={5} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     5
                 </SliderMark>
-                <SliderMark value={6} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={6} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     6
                 </SliderMark>
-                <SliderMark value={7} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={7} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     7
                 </SliderMark>
-                <SliderMark value={8} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={8} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     8
                 </SliderMark>
-                <SliderMark value={9} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={9} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     9
                 </SliderMark>
 
-                <SliderMark value={10} mt='3' ml='-2.1' fontSize='sm'>
+                <SliderMark value={10} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
                     10
                 </SliderMark>
                 <SliderMark

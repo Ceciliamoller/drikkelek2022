@@ -49,7 +49,7 @@ function Settings() {
 
                         <Text>    </Text>
                         <Addmembers> </Addmembers>
-                        <Drøyhetsskala> </Drøyhetsskala>
+                        <Drøyhetsskala color="black"> </Drøyhetsskala>
                     </VStack>
 
                     <ModalFooter>

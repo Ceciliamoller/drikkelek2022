@@ -107,7 +107,7 @@ function Question() {
     return (
 
       <Center
-        bgGradient='linear(to-tr, #f56038, #ffca7a)'
+        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
         _hover={{ bg: "" }}
         variant='outline'
         h="100%"
@@ -148,7 +148,7 @@ function Question() {
     return (
 
       <Center
-        bgGradient='linear(to-tr, #f56038, #ffca7a)'
+        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
         _hover={{ bg: "" }}
         variant='outline'
         h="100%"
