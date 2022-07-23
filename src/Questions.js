@@ -4,16 +4,6 @@ import { list } from "@chakra-ui/react";
 const questions = [
   {
     header: " ", 
-    value: "1.0", 
-    content:"Alle fra omega kan dele ut en slurk til en fra smørekoppen",
-   }, 
-   {
-    header: " ", 
-    value: "1.0", 
-    content:"Alle fra smørekoppen kan dele ut en slurk til en fra omega",
-   }, 
-   {
-    header: " ", 
     value: "5.0", 
     content:"Alle som drikker Dahls kan dele ut 4 slurker. ",
    }, 
