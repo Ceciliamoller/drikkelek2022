@@ -101,7 +101,7 @@ function Question() {
     : undefined;
     */
 
-  if (count === questions.length) {
+  if (count === filteredQuestions.length - 1) {
 
     return (
 
@@ -112,29 +112,18 @@ function Question() {
         h="100%"
         w="100%"
         padding="5"
-        onClick={
-          () => {
-            setCount(count + 1);
-            setFilteredQuestions(setMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
-
-          }
-
-        }
       >
         <VStack spacing={5} w="100%">
 
-
-          <Heading color="white" textAlign="center"> Utfordring </Heading>
+          <Heading color="white" textAlign="center"> Ferdig </Heading>
 
           <Box pb="50px" >
             <Text color="white" fontSize='xl' textAlign="center"
               w="100%"
 
-            >{customQuestion}  </Text>
+            > {"Det var alle spørsmålene. Ha en fin kveld videre!"}  </Text>
           </Box>
 
-          <AddQuestion count={count} ></AddQuestion>
-          <Settings  ></Settings>
 
         </VStack>
 
