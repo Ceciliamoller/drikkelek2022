@@ -50,11 +50,12 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
       array[randomIndex], array[currentIndex]];
   }
 
+
   return array;
 }
 
 
-function setMemberQuestions(array, count) {
+function setMemberQuestions(array) {
 
   array = array.filter(n => n);
 
@@ -100,11 +101,47 @@ function Question() {
     : undefined;
     */
 
-  if (count === 0 && Object.values(filteredQuestions[count])[0].includes("Navn-spesifikt")) {
-    setCount(count + 1);
-    console.log("det gikk!")
-  };
+  if (count === questions.length) {
 
+    return (
+
+      <Center
+        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
+        _hover={{ bg: "" }}
+        variant='outline'
+        h="100%"
+        w="100%"
+        padding="5"
+        onClick={
+          () => {
+            setCount(count + 1);
+            setFilteredQuestions(setMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
+
+          }
+
+        }
+      >
+        <VStack spacing={5} w="100%">
+
+
+          <Heading color="white" textAlign="center"> Utfordring </Heading>
+
+          <Box pb="50px" >
+            <Text color="white" fontSize='xl' textAlign="center"
+              w="100%"
+
+            >{customQuestion}  </Text>
+          </Box>
+
+          <AddQuestion count={count} ></AddQuestion>
+          <Settings  ></Settings>
+
+        </VStack>
+
+      </Center >
+    )
+
+  };
 
 
   if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
@@ -164,11 +201,8 @@ function Question() {
             setCount(count + 1);
             setFilteredQuestions(filterDifficulty(setMemberQuestions(questionsCopy))); //ikke filtrer den allerede filtrerte listen
             //setFilteredQuestions(filterDifficulty(filteredQuestions)); //Dårlig kode å gjøre dette for hvert spm??
-            console.log("SMQ: ", setMemberQuestions(questionsCopy))
-            console.log("FQ skal være slik: ", filterDifficulty(setMemberQuestions(questionsCopy)));
-            console.log(questionsCopy);
-            console.log("FQ ekte: ", filteredQuestions);
-            console.log("her: ", Object.values(filteredQuestions[count])[0])
+            console.log("føste objekt: ", Object.values(filteredQuestions[0])[0]);
+
           }
         }
       >
