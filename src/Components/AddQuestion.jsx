@@ -11,6 +11,9 @@ import {
     ModalFooter,
     useDisclosure,
     Input,
+    Text,
+    AlertIcon,
+    Alert,
 } from "@chakra-ui/react";
 //import circleLogo from '../Assets/circleLogo.jpg';
 import questions from "../Questions";
@@ -24,6 +27,8 @@ function AddQuestion({ count }) {
     //const [questionsCopy, setquestionsCopy] = useState([]);
     const [latestQuestion, setLatestQuestion] = useState("");
     const { isOpen, onOpen, onClose } = useDisclosure(false);
+    const [currentStatus, setCurrentStatus] = useState('info')
+    const [alertInfo, setAlertInfo] = useState('Utfordringen blandes med resten av utfordringene i spillet')
 
     function addQuestion(question) {
         var rand_index = Math.floor(Math.random() * ((count + 11) - count + 2)) + count + 1; //tall mellom count+1 og count+11
@@ -55,9 +60,15 @@ function AddQuestion({ count }) {
                     <ModalHeader>Legg til utfordring</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-
-                        <Input placeholder='Utfordring' id='name' onChange={
-                            (event) => setLatestQuestion(event.target.value)} />
+                        <Alert status={currentStatus}>
+                            <AlertIcon color="#1966b8" />
+                            {alertInfo}
+                        </Alert>
+                        <Input mt="20px" placeholder='Maria må chugge drikken sin' id='name' onChange={
+                            (event) => {
+                                setLatestQuestion(event.target.value);
+                            }
+                        } />
 
 
                     </ModalBody>
@@ -75,12 +86,18 @@ function AddQuestion({ count }) {
                                     setLatestQuestion("");
                                     document.getElementById(
                                         'name').value = '';
+                                    setCurrentStatus('success');
+                                    setAlertInfo('Utfordringen ble lagt til!')
                                 }
                             }
 
                             }>Legg til</Button>
 
-                            <Button colorScheme='blue' mr={3} onClick={onClose}>
+                            <Button colorScheme='blue' mr={3} onClick={() => {
+                                onClose()
+                                setCurrentStatus('info');
+                                setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
+                            }}>
                                 Lukk
                             </Button>
                         </HStack>

@@ -55,13 +55,15 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
 }
 
 
-function setMemberQuestions(array) {
+function getMemberQuestions(array) {
 
-  array = array.filter(n => n);
+  var arrayCopy = [...array];
 
+  //array = array.filter(n => n);
+  console.log("før shuffle: ", array)
 
   array.forEach(element => {
-    shuffle(members); //evt members= shuffle(members);
+    shuffle(members);
 
     //var randMember = members[Math.floor(Math.random() * members.length)];
     if (Object.keys(element).includes("value")) { //ser bort fra alle egendefinerte
@@ -71,23 +73,22 @@ function setMemberQuestions(array) {
           var newElement = Object.values(element)[2].toString().replace(/memb/i, members[0]);
           newElement = newElement.replace(/memb2/gi, members[1]);
         }
-        const index = array.indexOf(element); //alle navnspesifikke fjernes dersom antall medlemmer er under 2. 
-        array.splice(index, 1, newElement);               // hvis ikke concattes de til listen for de fjernes (over)
+        const index = arrayCopy.indexOf(element); //alle navnspesifikke fjernes dersom antall medlemmer er under 2. 
+        arrayCopy.splice(index, 1, newElement);
       }
     }
   })
 
-  array = array.filter(n => n);
-
-  return array;
+  arrayCopy = arrayCopy.filter(n => n !== undefined);
+  return arrayCopy;
 }
 
 
 function Question() {
-  var questionsCopy = [...questions];
+  //var questionsCopy = [...questions];
   const [count, setCount] = useState(0);
   //const [difficulty, setDifficulty] = useState(5);
-  const [filteredQuestions, setFilteredQuestions] = useState(questionsCopy);
+  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(questions));
   //const { isOpen, onOpen, onClose } = useDisclosure(false);
   //const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
 
@@ -100,6 +101,8 @@ function Question() {
     ? filteredQuestions[count].description
     : undefined;
     */
+
+  console.log("topp: ", filteredQuestions);
 
   if (count === filteredQuestions.length - 1) {
 
@@ -146,14 +149,11 @@ function Question() {
         onClick={
           () => {
             setCount(count + 1);
-            setFilteredQuestions(setMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
-
+            setFilteredQuestions(getMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
           }
-
         }
       >
         <VStack spacing={5} w="100%">
-
 
           <Heading color="white" textAlign="center"> Utfordring </Heading>
 
@@ -186,11 +186,12 @@ function Question() {
         padding="5"
         onClick={
           () => {
-            console.log("hei");
+
+
             setCount(count + 1);
-            setFilteredQuestions(filterDifficulty(setMemberQuestions(questionsCopy))); //ikke filtrer den allerede filtrerte listen
+            setFilteredQuestions(getMemberQuestions(questions)); //ikke filtrer den allerede filtrerte listen
             //setFilteredQuestions(filterDifficulty(filteredQuestions)); //Dårlig kode å gjøre dette for hvert spm??
-            console.log("føste objekt: ", Object.values(filteredQuestions[0])[0]);
+
 
           }
         }

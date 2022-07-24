@@ -560,17 +560,17 @@ const questions = [
    {
     header: "Chuggekonkurranse!!", 
     value: "1.0", 
-    content:"memb mot memb3",
+    content:"memb mot memb2",
    }, 
    {
     header: "Chuggekonkurranse!!", 
     value: "1.0", 
-    content:"memb mot memb4",
+    content:"memb mot memb2",
    }, 
    {
     header: "Chuggekonkurranse!!", 
     value: "1.0", 
-    content:"memb mot memb5",
+    content:"memb mot memb2",
    }, 
    {
     header: "Navn-spesifikt", 
@@ -750,7 +750,9 @@ function filter(array){
 
 
 function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  let currentIndex = array.length,  randomIndex;
+  let currentIndex = array.length;
+  let randomIndex;
+  var arrayCopy=[...array];
 
   // While there remain elements to shuffle.
   while (currentIndex !== 0) {
@@ -760,24 +762,25 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
     currentIndex--;
 
     // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+    [arrayCopy[currentIndex], arrayCopy[randomIndex]] = [
+      arrayCopy[randomIndex], arrayCopy[currentIndex]];
   }
-
+/*
   if (Object.values(array[0])[0].includes("Navn-spesifikt") === true) {
-    array.splice(0, 1);
+    arrayCopy.splice(0, 1);
     console.log("1. element fjernet pga det var navn-spesifikt");
   };
-  array = array.filter(n => n);
+  */
+  //array = array.filter(n => n);
 
-  console.log("test");
+  console.log("etter shuffle: ", array);
   
-  return array;
+  return arrayCopy;
 }
 
 
 //filter(questions);
-shuffle(questions);
+//shuffle(questions);
 
 
 
