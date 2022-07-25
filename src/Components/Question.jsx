@@ -19,20 +19,23 @@ import members from "../Members";
 
 
 function filterDifficulty(array) {
+  var arrayCopy = [...array];
   console.log("difficulty:" + difficulty)
-  array.forEach(element => {
-    if (Object.keys(element).includes("value")) {
+  arrayCopy.forEach(element => {
+    if (Object.keys(element).includes("value")) { // ser bort fra modifiserte spm
       //console.log("hei");
 
-      if (Number(Object.values(element)[1]) > Number(difficulty)) {
-        const index = array.indexOf(element);
-        array.splice(index, 1);
+      if (Number(Object.values(element)[1]) > Number(difficulty)) { //fjerner spm med drøyhetsverdi over difficulty
+        const index = arrayCopy.indexOf(element);
+        arrayCopy.splice(index, 1, "");
         //console.log("element fjernet, pga difficulty: ", Object.values(element)[1]);
       }
     }
   });
-  array = array.filter(n => n);
-  return array;
+  console.log("arraycopy filtrert: ", arrayCopy);
+  arrayCopy = arrayCopy.filter(n => n !== "");
+  console.log("arraycopy filtrert ferdig: ", arrayCopy);
+  return arrayCopy;
 }
 
 function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -56,12 +59,7 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
 
 
 function getMemberQuestions(array) {
-
   var arrayCopy = [...array];
-
-  //array = array.filter(n => n);
-  console.log("før shuffle: ", array)
-
   array.forEach(element => {
     shuffle(members);
 
@@ -78,7 +76,6 @@ function getMemberQuestions(array) {
       }
     }
   })
-
   arrayCopy = arrayCopy.filter(n => n !== undefined);
   return arrayCopy;
 }
@@ -86,12 +83,15 @@ function getMemberQuestions(array) {
 
 function Question() {
   //var questionsCopy = [...questions];
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   //const [difficulty, setDifficulty] = useState(5);
-  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(questions));
+  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(filterDifficulty(questions)));
+  const [content, setContent] = useState(filteredQuestions[0].content);
+  const [header, setHeader] = useState(filteredQuestions[0].header);
+  console.log(filteredQuestions);
+
   //const { isOpen, onOpen, onClose } = useDisclosure(false);
   //const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
-
 
   const customQuestion = filteredQuestions[count];
   //const header = filteredQuestions[count].header;
@@ -102,122 +102,61 @@ function Question() {
     : undefined;
     */
 
-  console.log("topp: ", filteredQuestions);
 
-  if (count === filteredQuestions.length - 1) {
+  return (
 
-    return (
+    <Center
+      bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
+      _hover={{ bg: "" }}
+      variant='outline'
+      h="100%"
+      w="100%"
+      padding="5"
+      onClick={
+        () => {
 
-      <Center
-        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
-        _hover={{ bg: "" }}
-        variant='outline'
-        h="100%"
-        w="100%"
-        padding="5"
-      >
-        <VStack spacing={5} w="100%">
+          //console.log("count øverst: ", count);
+          setCount(count + 1);
+          setFilteredQuestions(getMemberQuestions(filterDifficulty(questions))); //ikke filtrer den allerede filtrerte listen
+          //setFilteredQuestions(filterDifficulty(filteredQuestions)); //Dårlig kode å gjøre dette for hvert spm??
+          if (count === filteredQuestions.length - 1) {
+            setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
+            setHeader("Ferdig");
+          }
+          if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
+            setContent(customQuestion);
+            setHeader("Utfordring");
+          }
 
-          <Heading color="white" textAlign="center"> Ferdig </Heading>
-
-          <Box pb="50px" >
-            <Text color="white" fontSize='xl' textAlign="center"
-              w="100%"
-
-            > {"Det var alle spørsmålene. Ha en fin kveld videre!"}  </Text>
-          </Box>
-
-
-        </VStack>
-
-      </Center >
-    )
-
-  };
-
-
-  if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
-    return (
-
-      <Center
-        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
-        _hover={{ bg: "" }}
-        variant='outline'
-        h="100%"
-        w="100%"
-        padding="5"
-        onClick={
-          () => {
-            setCount(count + 1);
-            setFilteredQuestions(getMemberQuestions(questions)); //Dårlig kode å gjøre dette for hvert spm??
+          else {
+            setContent(filteredQuestions[count].content);
+            setHeader(filteredQuestions[count].header);
           }
         }
-      >
-        <VStack spacing={5} w="100%">
+      }
+    >
+      <VStack spacing={5} w="100%">
 
-          <Heading color="white" textAlign="center"> Utfordring </Heading>
+        <Heading color="white" textAlign="center">{header}</Heading>
 
-          <Box pb="50px" >
-            <Text color="white" fontSize='xl' textAlign="center"
-              w="100%"
+        <Box pb="50px" >
+          <Text color="white" fontSize='xl' textAlign="center"
+            w="100%"
+          >{content}  </Text>
+        </Box>
 
-            >{customQuestion}  </Text>
-          </Box>
-
-          <AddQuestion count={count} ></AddQuestion>
-          <Settings  ></Settings>
-
-        </VStack>
-
-      </Center >
-    )
-  }
-
-  else {
-
-    return (
-
-      <Center
-        bgGradient='linear(to-tr, #ee7e0f, #fbb564)'
-        _hover={{ bg: "" }}
-        variant='outline'
-        h="100%"
-        w="100%"
-        padding="5"
-        onClick={
-          () => {
+        <AddQuestion count={count} ></AddQuestion>
+        <Settings  ></Settings>
 
 
-            setCount(count + 1);
-            setFilteredQuestions(getMemberQuestions(questions)); //ikke filtrer den allerede filtrerte listen
-            //setFilteredQuestions(filterDifficulty(filteredQuestions)); //Dårlig kode å gjøre dette for hvert spm??
+      </VStack>
 
-
-          }
-        }
-      >
-        <VStack spacing={5} w="100%">
-
-          <Heading color="white" textAlign="center">{filteredQuestions[count].header}</Heading>
-
-          <Box pb="50px" >
-            <Text color="white" fontSize='xl' textAlign="center"
-              w="100%"
-            >{filteredQuestions[count].content}  </Text>
-          </Box>
-
-          <AddQuestion count={count} ></AddQuestion>
-          <Settings  ></Settings>
-
-
-        </VStack>
-
-      </Center >
-    );
-
-  }
+    </Center >
+  );
 
 };
+
+
 
 
 export default Question;

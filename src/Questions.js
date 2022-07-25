@@ -55,7 +55,7 @@ const questions = [
    {
     header: "Drikk hvis", 
     value: "5.0", 
-    content:"Drikk hvis du skal pule en i rommet",
+    content:"Drikk hvis du skal pule noen i rommet",
    }, 
    {
     header: "Drikk hvis", 
@@ -335,7 +335,7 @@ const questions = [
    {
     header: "Navn-spesifikt", 
     value: "9.0", 
-    content:"memb må hooke noen i rommet",
+    content:"memb må hooke noen i rommet, eller ta 5 slurker. ",
    }, 
    {
     header: "Navn-spesifikt", 
@@ -395,7 +395,7 @@ const questions = [
    {
     header: "Pekelek", 
     value: "2.0", 
-    content:"Hvem har den sjukeste historien?",
+    content:"Hvem har den sjukeste historien? Fortell historien. ",
    }, 
    {
     header: "Pekelek", 
@@ -430,55 +430,55 @@ const questions = [
    {
     header: "Pekelek", 
     value: "9.0", 
-    content:"Hvem ville gitt den beste lap dancen?",
+    content:"Hvem ville gitt den beste lap dancen? Gi en lap dance til en valgfri person. ",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 3 utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 3 utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 2 utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 2 utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til en utfordring",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til en utfordring",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"send telefonen rundt, så alle som vil kan legge til utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"send telefonen rundt, så alle som vil kan legge til utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 2 utfordringer",
    }, 
    {
-    header: "legge til utfordring", 
+    header: "legg til utfordring", 
     value: "1.0", 
     content:"memb kan legge til 2 utfordringer",
    }, 
@@ -499,11 +499,6 @@ const questions = [
    }, 
    {
     header: "Navn-spesifikt", 
-    value: "4.0", 
-    content:"memb: hold en tale og takk alle for å ha kommet i kveld. Del ut 5 slurker. ",
-   }, 
-   {
-    header: "Navn-spesifikt", 
     value: "8.0", 
     content:"Karaoke!! memb må synge et vers av sin yndlingssang, eller chugge hele drikken sin. ",
    }, 
@@ -516,11 +511,6 @@ const questions = [
     header: "Navn-spesifikt", 
     value: "7.0", 
     content:"memb: legg ut en selfie på instastory, eller chugg hele drikken din",
-   }, 
-   {
-    header: "Navn-spesifikt", 
-    value: "5.0", 
-    content:"memb, legg ut en boomerang på instastory, eller chiúgg hele drikken din",
    }, 
    {
     header: "Navn-spesifikt", 
@@ -553,24 +543,24 @@ const questions = [
     content:" Personen liker trøndersk kebab",
    }, 
    {
-    header: "Chuggekonkurranse!!", 
+    header: "Navn-spesifikt", 
     value: "1.0", 
-    content:"memb mot memb2",
+    content:"Chuggekonkurranse! memb mot memb2",
    }, 
    {
-    header: "Chuggekonkurranse!!", 
+    header: "Navn-spesifikt", 
     value: "1.0", 
-    content:"memb mot memb2",
+    content:"Chuggekonkurranse! memb mot memb2",
    }, 
    {
-    header: "Chuggekonkurranse!!", 
+    header: "Navn-spesifikt", 
     value: "1.0", 
-    content:"memb mot memb2",
+    content:"Chuggekonkurranse! memb mot memb2",
    }, 
    {
-    header: "Chuggekonkurranse!!", 
+    header: "Navn-spesifikt", 
     value: "1.0", 
-    content:"memb mot memb2",
+    content:"Chuggekonkurranse! memb mot memb2",
    }, 
    {
     header: "Navn-spesifikt", 
@@ -639,7 +629,7 @@ const questions = [
    }, 
    {
     header: "Drikk hvis", 
-    value: "1.0", 
+    value: "2.0", 
     content:"Drikk hvis du har vært drita på festningen",
    }, 
    {
@@ -773,7 +763,7 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
   */
   //array = array.filter(n => n);
 
-  console.log("etter shuffle: ", array);
+  
   
   return arrayCopy;
 }
