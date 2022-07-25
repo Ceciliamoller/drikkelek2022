@@ -2,7 +2,7 @@
 import "../App.css";
 import React, { useState } from "react";
 import {
-    Center, Button, useDisclosure, VStack, Box, Switch, Text,
+    Center, Button, useDisclosure, VStack, Box, Switch, Text, FormLabel,
 } from "@chakra-ui/react";
 import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
@@ -58,8 +58,9 @@ function MainPage() {
                             </Button>
                             <Addmembers></Addmembers>
                             <Box ml="100px">
-                                <Text color="white"> Gløs-tema: </Text>
-                                <Switch defaultChecked="on" onChange={() => glostema = false}> </Switch>
+
+                                <FormLabel color="white" htmlFor='glostema' > Gløs-tema: </FormLabel>
+                                <Switch id='glostema' defaultChecked="on" onChange={() => glostema = false}> </Switch>
                             </Box>
 
                         </VStack>

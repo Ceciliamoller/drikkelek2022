@@ -105,7 +105,7 @@ function Question() {
   //const [difficulty, setDifficulty] = useState(5);
   const questionsCopy = filterGlos(questions);
 
-  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(questionsCopy));
+  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(filterDifficulty(questionsCopy)));
   const [content, setContent] = useState(filteredQuestions[0].content);
   const [header, setHeader] = useState(filteredQuestions[0].header);
   console.log("filteredquestions topp: ", filteredQuestions);
@@ -136,20 +136,25 @@ function Question() {
         () => {
 
           //console.log("count øverst: ", count);
-          setCount(count + 1);
-          setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
+
 
           console.log("filteredquestions: ", filteredQuestions);
           if (count === filteredQuestions.length - 1) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
           }
-          if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
+
+
+          else if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
+            setCount(count + 1);
+            setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
             setContent(customQuestion);
             setHeader("Utfordring");
           }
 
           else {
+            setCount(count + 1);
+            setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
             setContent(filteredQuestions[count].content);
             setHeader(filteredQuestions[count].header);
 
