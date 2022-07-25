@@ -6,4 +6,4 @@ myData = pd.read_excel(r'SporsmålNidarus.xlsx', engine='openpyxl', usecols="A:E
 
 for index, row in myData[0:len(myData)].iterrows():
 
-    print("{\n header: \"" + str(row[0])+ "\", \n value: \"" + str(row[1])+ "\", \n content:\"" + str(row[3]) + "\",\n}, ")
+    print("{\n header: \"" + str(row[0])+ "\", \n value: \"" + str(row[1])+ "\", \n content:\"" + str(row[3]) + "\",\n glos:\""+str(row[2])+ "\", \n}, ")

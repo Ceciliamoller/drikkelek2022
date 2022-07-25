@@ -15,28 +15,48 @@ import Settings from "./Settings";
 import questions from "../Questions";
 import { difficulty } from "./Droyhetsskala";
 import members from "../Members";
+import { glostema } from "./MainPage";
 
-
-
-function filterDifficulty(array) {
+function filterGlos(array) { //filtrerer kun ved initialiseringen 
+  //console.log("array før: ", array);
+  console.log("glostema: ", glostema);
   var arrayCopy = [...array];
-  console.log("difficulty:" + difficulty)
-  arrayCopy.forEach(element => {
+  if (glostema === false) {
+
+    arrayCopy.forEach(element => {
+      if (Number(Object.values(element)[3]) === 1) {
+        const index = arrayCopy.indexOf(element);
+        arrayCopy.splice(index, 1, "");
+      }
+    }
+    );
+    arrayCopy = arrayCopy.filter(n => n !== "")
+  }
+  //console.log("arrayCopy filtered on gløs-theme: ", arrayCopy);
+  return arrayCopy;
+}
+
+function filterDifficulty(array) { //endrer questions
+
+  //console.log("difficulty:" + difficulty)
+  array.forEach(element => {
     if (Object.keys(element).includes("value")) { // ser bort fra modifiserte spm
       //console.log("hei");
 
       if (Number(Object.values(element)[1]) > Number(difficulty)) { //fjerner spm med drøyhetsverdi over difficulty
-        const index = arrayCopy.indexOf(element);
-        arrayCopy.splice(index, 1, "");
+        const index = array.indexOf(element);
+        array.splice(index, 1, "");
         //console.log("element fjernet, pga difficulty: ", Object.values(element)[1]);
       }
     }
   });
-  console.log("arraycopy filtrert: ", arrayCopy);
-  arrayCopy = arrayCopy.filter(n => n !== "");
-  console.log("arraycopy filtrert ferdig: ", arrayCopy);
-  return arrayCopy;
+  //console.log("arraycopy filtrert: ", arrayCopy);
+  array = array.filter(n => n !== "");
+  //console.log("arraycopy filtrert ferdig: ", arrayCopy);
+  return array;
 }
+
+
 
 function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   let currentIndex = array.length, randomIndex;
@@ -52,8 +72,6 @@ function shuffle(array) { //hentet fra: https://stackoverflow.com/questions/2450
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
-
-
   return array;
 }
 
@@ -82,13 +100,15 @@ function getMemberQuestions(array) {
 
 
 function Question() {
-  //var questionsCopy = [...questions];
+
   const [count, setCount] = useState(1);
   //const [difficulty, setDifficulty] = useState(5);
-  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(filterDifficulty(questions)));
+  const questionsCopy = filterGlos(questions);
+
+  const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(questionsCopy));
   const [content, setContent] = useState(filteredQuestions[0].content);
   const [header, setHeader] = useState(filteredQuestions[0].header);
-  console.log(filteredQuestions);
+  console.log("filteredquestions topp: ", filteredQuestions);
 
   //const { isOpen, onOpen, onClose } = useDisclosure(false);
   //const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
@@ -117,8 +137,9 @@ function Question() {
 
           //console.log("count øverst: ", count);
           setCount(count + 1);
-          setFilteredQuestions(getMemberQuestions(filterDifficulty(questions))); //ikke filtrer den allerede filtrerte listen
-          //setFilteredQuestions(filterDifficulty(filteredQuestions)); //Dårlig kode å gjøre dette for hvert spm??
+          setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
+
+          console.log("filteredquestions: ", filteredQuestions);
           if (count === filteredQuestions.length - 1) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
@@ -131,6 +152,7 @@ function Question() {
           else {
             setContent(filteredQuestions[count].content);
             setHeader(filteredQuestions[count].header);
+
           }
         }
       }
