@@ -171,11 +171,8 @@ function Question() {
             w="100%"
           >{content}  </Text>
         </Box>
-
         <AddQuestion count={count} ></AddQuestion>
         <Settings  ></Settings>
-
-
       </VStack>
 
     </Center >

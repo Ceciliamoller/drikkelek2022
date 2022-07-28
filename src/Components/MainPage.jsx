@@ -2,7 +2,7 @@
 import "../App.css";
 import React, { useState } from "react";
 import {
-    Center, Button, useDisclosure, VStack, Box, Switch, Text, FormLabel,
+    Center, Button, useDisclosure, VStack, Box, Switch, Text, FormLabel, HStack,
 } from "@chakra-ui/react";
 import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
@@ -21,7 +21,7 @@ function MainPage() {
 
     const { isOpen, onOpen, onClose } = useDisclosure(false);
 
-
+    //const [newGlostema, setNewGlostema] = useState(true);
     const [started, setStarted] = useState(false);
     const [finalStarted, setFinalStarted] = useState(false);
 
@@ -49,18 +49,21 @@ function MainPage() {
                             </Box>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                         </VStack> :
-                        <VStack mt="80px"
+
+                        <VStack
                             spacing={4}
                             align='stretch'
                         >
+                            <HStack position="absolute" bottom="650" ml="10px" spacing="10px">
+                                <Text fontSize="xl" color="white"> Gløs-tema: </Text>
+                                <Switch id='glostema' defaultChecked="on" onChange={() => glostema = !glostema}> </Switch>
+                            </HStack>
                             <Button onClick={() => setStarted(true)}>
                                 Start
                             </Button>
                             <Addmembers></Addmembers>
                             <Box ml="100px">
 
-                                <FormLabel color="white" htmlFor='glostema' > Gløs-tema: </FormLabel>
-                                <Switch id='glostema' defaultChecked="on" onChange={() => glostema = false}> </Switch>
                             </Box>
 
                         </VStack>

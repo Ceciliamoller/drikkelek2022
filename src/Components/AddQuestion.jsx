@@ -31,9 +31,10 @@ function AddQuestion({ count }) {
     const [alertInfo, setAlertInfo] = useState('Utfordringen blandes med resten av utfordringene i spillet')
 
     function addQuestion(question) {
-        var rand_index = Math.floor(Math.random() * ((count + 11) - count + 2)) + count + 1; //tall mellom count+1 og count+11
+        var rand_index = Math.floor(Math.random() * ((count + 10) - count + 2)) + count + 1; //tall mellom count+1 og count+10
         questions.splice(rand_index, 0, question);
-        //setquestions(questions.concat(Question))
+        console.log("count: ", count);
+        console.log("index: ", rand_index);
     }
 
     /*
