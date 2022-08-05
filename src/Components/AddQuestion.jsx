@@ -23,8 +23,6 @@ import { HiPlusSm } from 'react-icons/hi';
 function AddQuestion({ count }) {
     //kilde: https://chakra-ui.com/docs/components/modal
 
-    //const [questions, setquestions] = useState([]);
-    //const [questionsCopy, setquestionsCopy] = useState([]);
     const [latestQuestion, setLatestQuestion] = useState("");
     const { isOpen, onOpen, onClose } = useDisclosure(false);
     const [currentStatus, setCurrentStatus] = useState('info')
@@ -32,20 +30,11 @@ function AddQuestion({ count }) {
 
     function addQuestion(question) {
         var rand_index = Math.floor(Math.random() * ((count + 10) - count + 2)) + count + 1; //tall mellom count+1 og count+10
+        //var rand_index = count + 2;
         questions.splice(rand_index, 0, question);
         console.log("count: ", count);
         console.log("index: ", rand_index);
     }
-
-    /*
-
-    function clearF() { //kode hentet fra https://www.delftstack.com/howto/javascript/javascript-clear-input/
-        var grab = document.getElementBy("name");
-        if (grab.target.value !== "") {
-            grab.target.value = "";
-        }
-    }
-*/
 
 
     return (
@@ -65,15 +54,21 @@ function AddQuestion({ count }) {
                             <AlertIcon color="#1966b8" />
                             {alertInfo}
                         </Alert>
-                        <Input mt="20px" placeholder='Maria må chugge drikken sin' id='name' onChange={
-                            (event) => {
-                                setLatestQuestion(event.target.value);
-                            }
-                        } />
+                        <Input
+                            placeholder='Maria må chugge drikken sin'
+                            id='name'
 
+                            onFocus={() => {
+                                setCurrentStatus('info');
+                                setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
+                            }}
+                            onChange={
+                                (event) => {
+                                    setLatestQuestion(event.target.value);
+                                }
+                            } />
 
                     </ModalBody>
-
                     <ModalFooter>
 
                         <HStack parcing='10px'>
@@ -81,20 +76,22 @@ function AddQuestion({ count }) {
 
                             </Box>
 
-                            <Button variant='ghost' onClick={() => {
-                                if (!(latestQuestion.length === 0)) {
-                                    addQuestion(latestQuestion)
-                                    setLatestQuestion("");
-                                    document.getElementById(
-                                        'name').value = '';
-                                    setCurrentStatus('success');
-                                    setAlertInfo('Utfordringen ble lagt til!')
+                            <Button
+                                variant='ghost'
+                                colorScheme='red'
+                                onClick={() => {
+                                    if (!(latestQuestion.length === 0)) {
+                                        addQuestion(latestQuestion)
+                                        setLatestQuestion("");
+                                        document.getElementById(
+                                            'name').value = '';
+                                        setCurrentStatus('success');
+                                        setAlertInfo('Utfordringen ble lagt til!')
+                                    }
                                 }
-                            }
 
-                            }>Legg til</Button>
-
-                            <Button colorScheme='blue' mr={3} onClick={() => {
+                                }>Legg til</Button>
+                            <Button mr={3} onClick={() => {
                                 onClose()
                                 setCurrentStatus('info');
                                 setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
@@ -106,7 +103,7 @@ function AddQuestion({ count }) {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-        </Button>
+        </Button >
     );
 }
 

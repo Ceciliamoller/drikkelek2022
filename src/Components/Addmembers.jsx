@@ -17,7 +17,7 @@ import React, { useState } from "react";
 import members from "../Members";
 
 
-function Addmembers() {
+function Addmembers({ newColorSceme }) {
   //kilde: https://chakra-ui.com/docs/components/modal
 
   //const [members, setMembers] = useState([]);
@@ -45,16 +45,20 @@ function Addmembers() {
 
   return (
     <>
-      <Button size='lg' onClick={onOpen}>Legg til spillere
+      <Button colorScheme={newColorSceme} _hover={{ bg: '#f56038' }} size='lg' onClick={onOpen}>Legg til spillere
 
-        <Modal isOpen={isOpen} onClose={onClose} size="xs" >
+        <Modal scrollBehavior="outside" isOpen={isOpen} onClose={onClose} size="xs" >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Legg til spiller</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
 
-              <Input placeholder='Navn' id='name' onFocus="this.value=''" onChange={(event) => setLatestMember(event.target.value)} />
+              <Input
+                placeholder='Navn'
+                id='name'
+                onFocus="this.value=''"
+                onChange={(event) => setLatestMember(event.target.value)} />
 
 
             </ModalBody>
@@ -66,18 +70,20 @@ function Addmembers() {
                   {members.join(", ")}
                 </Box>
 
-                <Button variant='ghost' onClick={() => {
-                  if (!(latestMember.length === 0)) {
-                    addMember(latestMember)
-                    setLatestMember("");
-                    document.getElementById(
-                      'name').value = '';
+                <Button
+                  colorScheme='red'
+                  onClick={() => {
+                    if (!(latestMember.length === 0)) {
+                      addMember(latestMember)
+                      setLatestMember("");
+                      document.getElementById(
+                        'name').value = '';
+                    }
                   }
-                }
 
-                }>Legg til</Button>
+                  }>Legg til</Button>
 
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                <Button variant='outline' mr={3} onClick={onClose}>
                   Lukk
                 </Button>
               </HStack>

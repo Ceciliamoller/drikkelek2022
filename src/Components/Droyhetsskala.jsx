@@ -5,81 +5,100 @@ import {
     SliderThumb,
     SliderMark,
     Box,
+    Text,
     Heading,
+    VStack,
+    HStack,
+    Modal,
+    ModalContent,
+    ModalOverlay,
+    ModalCloseButton,
+    ModalHeader,
+    ModalFooter,
+    useDisclosure,
+    Button,
+    Alert,
+    AlertIcon,
+    Input,
+
 
 } from '@chakra-ui/react'
-import React from "react";
+import React, { useState } from "react";
 //import questions from '../Questions';
 import { FaBeer } from 'react-icons/fa';
+import { IoInformationCircleOutline } from 'react-icons/io5'
 
 
-var difficulty = 5;
+
+var difficulty = 2;
 
 function Droyhetsskala({ myColor }) {
     //var [newDifficulty, setnewDifficulty] = useState(5);
     //var newDifficulty = 5;
+    var [infoText, setInfoText] = useState("");
+    const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
     return (
-        <Box >
-            <Heading color={myColor} size='s' mb="15px" >   Velg drøyhetsnivå: </Heading>
-            <Slider mb="40px" defaultValue={difficulty} min={1} max={10} w='250px' onChange={
-                (val) => {
+        <Box w='100vw' h='150px' >
 
-                    difficulty = val;
-                }
-            } >
+            <VStack mt='20px'>
+                <Heading color={myColor} size='s' mb="15px" >   Drøyhetsnivå: </Heading>
+                <Slider mb="40px" defaultValue={difficulty} min={1} max={3} w='230px' onChange={
+                    (val) => {
+                        difficulty = val;
+                    }
+                } >
+                    <SliderTrack bg='white'>
+                        <Box position='relative' right={10}></Box>
+                        <SliderFilledTrack bg='#f56038' />
+                    </SliderTrack>
 
-                <SliderTrack bg='white'>
-                    <Box position='relative' right={10}></Box>
-                    <SliderFilledTrack bg='#f56038' />
-                </SliderTrack>
+                    <SliderThumb boxSize={6}> <Box color='tomato' as={FaBeer}> </Box> </SliderThumb>
+                    <SliderMark value={1} mt='3' ml='-2.1' fontSize='md' color={myColor}>
+                        1
+                    </SliderMark>
+                    <SliderMark value={2} mt='3' ml='-2.1' fontSize='md' color={myColor}>
+                        2
+                    </SliderMark>
+                    <SliderMark value={3} mt='3' ml='-2.1' fontSize='md' color={myColor}>
+                        3
+                    </SliderMark>
 
+                    <SliderMark
+                        value={difficulty}
+                        textAlign='center'
+                        bg='blue.500'
+                        color='white'
+                        mt='5'
+                        ml='-6'
+                        w='100'
+                    >
 
-                <SliderThumb boxSize={6}> <Box color='tomato' as={FaBeer}> </Box> </SliderThumb>
-                <SliderMark value={1} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    1
-                </SliderMark>
-                <SliderMark value={2} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    2
-                </SliderMark>
-                <SliderMark value={3} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    3
-                </SliderMark>
-                <SliderMark value={4} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    4
-                </SliderMark>
-                <SliderMark value={5} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    5
-                </SliderMark>
-                <SliderMark value={6} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    6
-                </SliderMark>
-                <SliderMark value={7} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    7
-                </SliderMark>
-                <SliderMark value={8} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    8
-                </SliderMark>
-                <SliderMark value={9} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    9
-                </SliderMark>
+                    </SliderMark>
+                </Slider>
+            </VStack>
+            <HStack mt='40px'>
 
-                <SliderMark value={10} mt='3' ml='-2.1' fontSize='sm' color={myColor}>
-                    10
-                </SliderMark>
-                <SliderMark
-                    value={difficulty}
-                    textAlign='center'
-                    bg='blue.500'
-                    color='white'
-                    mt='5'
-                    ml='-6'
-                    w='100'
-                >
-                    { }
-
-                </SliderMark>
-            </Slider>
-
+                <Button
+                    aria-label='Settings'
+                    leftIcon={< IoInformationCircleOutline />}
+                    fontSize='30px'
+                    color={myColor}
+                    variant='ghost'
+                    ml="20px"
+                    size='s'
+                    _hover={{ bg: '' }}
+                    _active={{
+                        bg: '',
+                    }}
+                    onClick={() => {
+                        if (infoText === "") {
+                            setInfoText("Velg hvor drøyt spillet skal være");
+                        }
+                        else { setInfoText(""); }
+                    }} >
+                </Button>
+                <Text color={myColor} > {infoText} </Text>
+            </HStack>
         </Box >
     )
 

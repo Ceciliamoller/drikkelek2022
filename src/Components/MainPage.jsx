@@ -9,6 +9,7 @@ import Addmembers from "../Components/Addmembers";
 import Droyhetsskala from "./Droyhetsskala";
 
 import StartsideNidarus from '../Assets/StartsideNidarus.PNG';
+import EmailButton from "./Emailbutton";
 
 
 var glostema = true;
@@ -27,49 +28,44 @@ function MainPage() {
 
 
 
-
-
     return (
-        <Box backgroundImage={StartsideNidarus} id="x" h='100vh' backgroundPosition="center"
-            spacing='20px' w="100vw" backgroundRepeat="no-repeat" backgroundSize="cover"  >
-
-
-
-
-
+        <Box backgroundImage={StartsideNidarus}
+            id="x" h='100vh'
+            backgroundPosition="center"
+            spacing='20px'
+            w="100vw"
+            backgroundRepeat="no-repeat"
+            backgroundSize="cover"
+        >
             <Center h="100%" w="100%">
                 {finalStarted ?
                     <>  <Question /> </> :
-
                     started ?
-                        <VStack h='100%' w="100%">
-
-                            <Box mt="280px" bg="#f3a040" >
+                        <VStack h='100%' w="100%" spacing='20px' >
+                            <Box mt="250px" bg="#f3a040" >
                                 <Droyhetsskala myColor='white' > </Droyhetsskala>
                             </Box>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                         </VStack> :
-
                         <VStack
                             spacing={4}
                             align='stretch'
                         >
-                            <HStack position="absolute" bottom="650" ml="10px" spacing="10px">
-                                <Text fontSize="xl" color="white"> Gløs-tema: </Text>
-                                <Switch id='glostema' defaultChecked="on" onChange={() => glostema = !glostema}> </Switch>
-                            </HStack>
                             <Button onClick={() => setStarted(true)}>
                                 Start
                             </Button>
                             <Addmembers></Addmembers>
-                            <Box ml="100px">
-
+                            <Box position="absolute" left="0" bottom="10">
+                                <EmailButton > </EmailButton>
                             </Box>
+                            <HStack position="absolute" right='2' bottom="10" spacing="10px">
 
+                                <Text ml='90px' fontSize="xl" color="white"> Gløs-tema: </Text>
+                                <Switch colorScheme="red" id='glostema' defaultChecked="on" onChange={() => glostema = !glostema}> </Switch>
+                            </HStack>
                         </VStack>
                 }
             </Center>
-
         </Box >
     );
 }

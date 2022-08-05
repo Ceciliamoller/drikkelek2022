@@ -1,10 +1,7 @@
 import {
-    Box,
     Button,
     VStack,
     Text,
-
-    HStack,
     Modal,
     ModalContent,
     ModalOverlay,
@@ -12,7 +9,6 @@ import {
     ModalHeader,
     ModalFooter,
     useDisclosure,
-
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -26,7 +22,6 @@ function Settings() {
     return (
 
         <Button aria-label='Settings' leftIcon={< FiSettings />}
-
             fontSize='40px'
             color='white'
             variant='ghost'
@@ -34,30 +29,22 @@ function Settings() {
                 e.stopPropagation();
                 onSettingsOpen();
             }} >
-
             <Modal isOpen={isSettingsOpen} onClose={onSettingsClose} size="sm" >
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader> Innstillinger </ModalHeader>
                     <ModalCloseButton />
                     <VStack spacing='45px'>
-
                         <Text>    </Text>
-                        <Addmembers> </Addmembers>
+                        <Addmembers newColorSceme='red'> </Addmembers>
                         <Drøyhetsskala color="black"> </Drøyhetsskala>
                     </VStack>
-
                     <ModalFooter>
 
-                        <HStack parcing='10px'>
-                            <Box w='200px'>
 
-                            </Box>
-
-                            <Button colorScheme='blue' mr={3} onClick={onSettingsClose}>
-                                Lukk
-                            </Button>
-                        </HStack>
+                        <Button mt='20px' mr={3} onClick={onSettingsClose}>
+                            Lukk
+                        </Button>
 
                     </ModalFooter>
                 </ModalContent>
