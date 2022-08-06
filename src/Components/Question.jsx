@@ -152,7 +152,7 @@ function Question() {
       onClick={
         () => {
 
-          if (count === filteredQuestions.length - 1) {
+          if (count === 79) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
           }
