@@ -47,18 +47,22 @@ function adjustIndexes2(array, index) {
   return array;
 }
 
-function adjustIndexes(array, index) {
-  array = array.filter(n => n !== undefined)
-  array.forEach(element => {
-    if (typeof element[1] === 'number') {
+function adjustIndexes(array) { //fjerner hvert egendefinerte spm og detter dem inn på indexen de hører til på.
+  //console.log("array before adjusting: ", array);
+  //array = array.filter(n => n !== undefined)
+
+  for (var i = 0; i < array.length; i++) {
+    var element = array[i];
+    if (element.length === 2) {
       var index = array.indexOf(element);
       array.splice(index, 1)
-      array.splice(element[1], 0, element[0]); //fjerner hvert egendefinerte spm og detter dem inn på indexen de hører til på. 
-      console.log("lengde: ", element.length);
-      console.log("element: ", element);
-    };
-  })
+      array.splice(element[1], 0, element[0]); //kompenserer for hvert element som er lagt inn fra før
 
+      //console.log("element: ", element);
+    };
+  }
+
+  //console.log("array etter justering: ", array);
   return array;
 }
 
@@ -71,7 +75,7 @@ function filterGlos(array) { //filtrerer kun ved initialiseringen
         // og fjerner alle vanlige spm med gløstema
         const index = arrayCopy.indexOf(element);
         arrayCopy.splice(index, 1);
-        arrayCopy = adjustIndexes(arrayCopy, index);
+        //arrayCopy = adjustIndexes(arrayCopy, index);
       }
     }
     );
@@ -92,13 +96,13 @@ function filterDifficulty(array) { //endrer questions
       if (Number(Object.values(element)[1]) > Number(difficulty)) { //fjerner spm med drøyhetsverdi over difficulty
         const index = array.indexOf(element);
         array.splice(index, 1);
-        //adjustIndexes(array, index);
+        //console.log("element fjernet: ", element);
       };
 
       if (Number(Object.values(element)[1] === 0 && Number(difficulty) === 3)) { //fjerner spm med drøyhetsgrad 0 ved drøyhetsgrad 3. 
         const index2 = array.indexOf(element);
         array.splice(index2, 1);
-        //adjustIndexes(array, index2);
+        //console.log("element fjernet: ", element);
       };
     };
   });
@@ -162,6 +166,7 @@ function Question() {
     : undefined;
     */
 
+  console.log({ count });
 
   return (
 
@@ -196,8 +201,9 @@ function Question() {
             setHeader(filteredQuestions[count].header);
 
           }
+
           console.log({ filteredQuestions });
-          console.log({ questions })
+
         }
       }
     >

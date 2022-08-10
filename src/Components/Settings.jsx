@@ -21,20 +21,18 @@ function Settings() {
     const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
     return (
 
-        <Button aria-label='Settings' leftIcon={< FiSettings />}
+        <Button aria-label='Settings'
+            leftIcon={< FiSettings />}
             fontSize='40px'
             color='white'
             variant='ghost'
+            _hover={{}}
             onClick={(e) => {
                 e.stopPropagation();
                 onSettingsOpen();
             }} >
 
-            <lord-icon
-                src="https://cdn.lordicon.com/ryyjawhw.json"
-                trigger="hover"
-            >
-            </lord-icon>
+
             <Modal isOpen={isSettingsOpen} onClose={onSettingsClose} size="sm" >
                 <ModalOverlay />
                 <ModalContent>

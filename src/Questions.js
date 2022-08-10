@@ -347,7 +347,7 @@ const questions = [ // er const bedre?
  }, 
  {
   header: "Jeg har aldri ", 
-  value: "2", 
+  value: "3", 
   content:"Jeg har aldri pult noen med en kjønnssykdom ",
   glos:"0", 
  }, 
@@ -528,7 +528,7 @@ const questions = [ // er const bedre?
  {
   header: "Navn-spesifikt", 
   value: "1", 
-  content:"Stirrekonkurranse mellom memb1 og memb2. Vinneren deler ut 6 slurker. ",
+  content:"Stirrekonkurranse mellom memb og memb2. Vinneren deler ut 6 slurker. ",
   glos:"0", 
  }, 
  {
