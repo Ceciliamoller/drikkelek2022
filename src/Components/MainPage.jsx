@@ -8,7 +8,7 @@ import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
 import Droyhetsskala from "./Droyhetsskala";
 
-import StartsideNidarus from '../Assets/NidarusStart.PNG';
+import StartsideNidarus from '../Assets/NidarusStart2.gif';
 import TittelNidarus from '../Assets/TittelNidarus.PNG';
 import EmailButton from "./Emailbutton";
 
@@ -28,7 +28,6 @@ function MainPage() {
     const [finalStarted, setFinalStarted] = useState(false);
 
 
-
     return (
         <Box backgroundImage={StartsideNidarus}
             id="x"
@@ -45,21 +44,28 @@ function MainPage() {
                     <>  <Question /> </> :
                     started ?
                         <VStack h='100%' w="100%" spacing='20px' >
-                            <Box mt="250px" bg="#f3a040" >
+                            <Box mt="240px" bg="#f3a040" >
                                 <Droyhetsskala myColor='white' > </Droyhetsskala>
                             </Box>
                             <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                         </VStack> :
-
                         <Box>
-
-
-
                             <VStack
                                 spacing={4}
                                 align='stretch'
                             >
+                                <Box backgroundImage={TittelNidarus}
+                                    id="y"
+                                    h='30vh'
+                                    w="90vw"
+                                    backgroundRepeat="no-repeat"
+                                    backgroundSize="cover"
 
+                                    position="absolute"
+                                    left="5"
+                                    right="0"
+                                    bottom="400"
+                                />
                                 <Button onClick={() => setStarted(true)}>
                                     Start
                                 </Button>
