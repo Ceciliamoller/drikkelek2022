@@ -40,7 +40,6 @@ function Addmembers({ newColorSceme }) {
   }
   */
 
-  console.log(isOpen)
 
 
   return (

@@ -29,6 +29,12 @@ function Settings() {
                 e.stopPropagation();
                 onSettingsOpen();
             }} >
+
+            <lord-icon
+                src="https://cdn.lordicon.com/ryyjawhw.json"
+                trigger="hover"
+            >
+            </lord-icon>
             <Modal isOpen={isSettingsOpen} onClose={onSettingsClose} size="sm" >
                 <ModalOverlay />
                 <ModalContent>

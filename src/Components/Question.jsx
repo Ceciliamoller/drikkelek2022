@@ -28,28 +28,57 @@ import questions from "../Questions";
 import { difficulty } from "./Droyhetsskala";
 import members from "../Members";
 import { glostema } from "./MainPage";
+import AddQuestion from "./AddQuestion";
+
+function adjustIndexes2(array, index) {
+
+  array = array.filter(n => n !== undefined)
+
+  for (var i = index; i < array.length; i++) {
+    var e = array[i];
+
+    if (!(Object.keys(e).includes("value"))) { //for hvert element som fjernes velges og fjernes hvert egendefinerte spm. De settes inn igjen en index høyere.
+      // dette gjøres med alle egendefinerte spm som ligger bak elementet som ble fjernet i listen
+      array.splice(i, 1);
+      array.splice(i + 1, 0, e);
+
+    }
+  }
+  return array;
+}
+
+function adjustIndexes(array, index) {
+  array = array.filter(n => n !== undefined)
+  array.forEach(element => {
+    if (typeof element[1] === 'number') {
+      var index = array.indexOf(element);
+      array.splice(index, 1)
+      array.splice(element[1], 0, element[0]); //fjerner hvert egendefinerte spm og detter dem inn på indexen de hører til på. 
+      console.log("lengde: ", element.length);
+      console.log("element: ", element);
+    };
+  })
+
+  return array;
+}
+
 
 function filterGlos(array) { //filtrerer kun ved initialiseringen 
-
   var arrayCopy = [...array];
   if (glostema === false) {
     arrayCopy.forEach(element => {
       if (Object.keys(element).includes("value") && Number(Object.values(element)[3]) === 1) { //ser bort fra modifiserte spm 
         // og fjerner alle vanlige spm med gløstema
         const index = arrayCopy.indexOf(element);
-        arrayCopy.splice(index, 1, "");
-        array.forEach(e => { //for hvert element som fjernes velges og fjernes hvert egendefinerte spm. De settes inn igjen en index høyere. 
-          if (!(Object.keys(e).includes("value"))) {
-            const index_customQuestion = array.indexOf(e);
-            array.splice(index_customQuestion, 1);
-            array.splice(index_customQuestion + 1, 0, e);
-          }
-        })
+        arrayCopy.splice(index, 1);
+        arrayCopy = adjustIndexes(arrayCopy, index);
       }
     }
     );
-    arrayCopy = arrayCopy.filter(n => n !== "")
+    arrayCopy = arrayCopy.filter(n => n !== undefined)
   }
+
+  //console.log("array after filterGlos", arrayCopy)
   return arrayCopy;
 }
 
@@ -57,18 +86,24 @@ function filterGlos(array) { //filtrerer kun ved initialiseringen
 function filterDifficulty(array) { //endrer questions
 
   array.forEach(element => {
+
     if (Object.keys(element).includes("value")) { // ser bort fra modifiserte spm
+
       if (Number(Object.values(element)[1]) > Number(difficulty)) { //fjerner spm med drøyhetsverdi over difficulty
         const index = array.indexOf(element);
         array.splice(index, 1);
-        if (Number(Object.values(element)[1] === 0 && Number(difficulty) === 3)) { //fjerner spm med drøyhetsgrad 0 ved drøyhetsgrad 3. 
-          const index = array.indexOf(element);
-          array.splice(index, 1);
-        }
+        //adjustIndexes(array, index);
+      };
+
+      if (Number(Object.values(element)[1] === 0 && Number(difficulty) === 3)) { //fjerner spm med drøyhetsgrad 0 ved drøyhetsgrad 3. 
+        const index2 = array.indexOf(element);
+        array.splice(index2, 1);
+        //adjustIndexes(array, index2);
       };
     };
   });
   //array = array.filter(n => n !== "");
+
   return array;
 }
 
@@ -96,11 +131,14 @@ function getMemberQuestions(array) {
 
       if (Object.values(element)[2].includes("memb")) { //ser bort fra alle som ikke er navn-spesifikke
         if (members.length > 1) {
-          var newElement = Object.values(element)[2].toString().replace(/memb/i, members[0]);
-          newElement = newElement.replace(/memb2/gi, members[1]);
+          var content = Object.values(element)[2].toString().replace(/memb/i, members[0]);
+          content = content.replace(/memb2/gi, members[1]);
+          var newElement = [content];
         }
+
         const index = arrayCopy.indexOf(element); //alle navnspesifikke fjernes dersom antall medlemmer er under 2. 
         arrayCopy.splice(index, 1, newElement);
+        //adjustIndexes(arrayCopy, index);
       }
     }
   })
@@ -109,12 +147,6 @@ function getMemberQuestions(array) {
 }
 
 function Question() {
-  function addQuestion(question) {
-    var rand_index = Math.floor(Math.random() * ((count + 10) - count + 2)) + count + 1; //tall mellom count+1 og count+10
-    questions.splice(rand_index, 0, question);
-    console.log("count: ", count);
-    console.log("index: ", rand_index);
-  }
 
   const [count, setCount] = useState(1);
   const questionsCopy = filterGlos(questions);
@@ -130,15 +162,6 @@ function Question() {
     : undefined;
     */
 
-  const [latestQuestion, setLatestQuestion] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure(false);
-  const [currentStatus, setCurrentStatus] = useState('info');
-  const [alertInfo, setAlertInfo] = useState('Utfordringen blandes med resten av utfordringene i spillet');
-
-
-  console.log({ questions });
-  console.log({ filteredQuestions });
-  console.log({ count })
 
   return (
 
@@ -152,6 +175,7 @@ function Question() {
       onClick={
         () => {
 
+
           if (count === 79) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
@@ -159,18 +183,21 @@ function Question() {
 
           else if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
             setCount(count + 1);
-            setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
+            setFilteredQuestions(adjustIndexes(getMemberQuestions(filterDifficulty(questionsCopy))));
             setContent(customQuestion);
             setHeader("Utfordring");
           }
 
+
           else {
             setCount(count + 1);
-            setFilteredQuestions(getMemberQuestions(filterDifficulty(questionsCopy)));
+            setFilteredQuestions(adjustIndexes(getMemberQuestions(filterDifficulty(questionsCopy))));
             setContent(filteredQuestions[count].content);
             setHeader(filteredQuestions[count].header);
-            console.log({ count });
+
           }
+          console.log({ filteredQuestions });
+          console.log({ questions })
         }
       }
     >
@@ -183,61 +210,8 @@ function Question() {
             w="100%"
           >{content}  </Text>
         </Box>
-        <Button w='200px' rightIcon={<HiPlusSm />}
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpen();
-          }}
-          variant='solid' aria-label='Search database' fontSize='18px'> Legg til utfordring
-          <Modal isOpen={isOpen} onClose={onClose} size="xs" >
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Legg til utfordring</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Alert status={currentStatus}>
-                  <AlertIcon color="#1966b8" />
-                  {alertInfo}
-                </Alert>
-                <Input mt="20px" placeholder='Maria må chugge drikken sin' id='name' onChange={
-                  (event) => {
-                    setLatestQuestion(event.target.value);
-                  }
-                } />
+        <AddQuestion count={count}> </AddQuestion>
 
-              </ModalBody>
-              <ModalFooter>
-
-                <HStack parcing='10px'>
-                  <Box w='200px'>
-                  </Box>
-
-                  <Button variant='ghost' onClick={() => {
-                    if (!(latestQuestion.length === 0)) {
-                      addQuestion(latestQuestion)
-                      setLatestQuestion("");
-                      document.getElementById(
-                        'name').value = '';
-                      setCurrentStatus('success');
-                      setAlertInfo('Utfordringen ble lagt til!')
-                    }
-                  }
-
-                  }>Legg til</Button>
-
-                  <Button colorScheme='red' mr={3} onClick={() => {
-                    onClose()
-                    setCurrentStatus('info');
-                    setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
-                  }}>
-                    Lukk
-                  </Button>
-                </HStack>
-
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Button>
         <Settings  ></Settings>
       </VStack>
     </Center >

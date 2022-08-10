@@ -28,22 +28,26 @@ function AddQuestion({ count }) {
     const [currentStatus, setCurrentStatus] = useState('info')
     const [alertInfo, setAlertInfo] = useState('Utfordringen blandes med resten av utfordringene i spillet')
 
-    function addQuestion(question) {
-        var rand_index = Math.floor(Math.random() * ((count + 10) - count + 2)) + count + 1; //tall mellom count+1 og count+10
+    function addQuestion(questionContent) {
+        var rand_index = Math.floor(Math.random() * (count + 11 - (count)) + 1) //tall mellom count+1 og count+11
         //var rand_index = count + 2;
+        var question = [questionContent, rand_index]
         questions.splice(rand_index, 0, question);
-        console.log("count: ", count);
-        console.log("index: ", rand_index);
+        console.log("custom question placed at index: ", rand_index);
     }
 
 
     return (
-        <Button w='200px' rightIcon={<HiPlusSm />}
+        <Button
+            w='200px'
+            rightIcon={<HiPlusSm />}
             onClick={(e) => {
                 e.stopPropagation();
                 onOpen();
             }}
-            variant='solid' aria-label='Search database' fontSize='18px'> Legg til utfordring
+            variant='solid'
+            aria-label='Search database'
+            fontSize='18px'> Legg til utfordring
             <Modal isOpen={isOpen} onClose={onClose} size="xs" >
                 <ModalOverlay />
                 <ModalContent>
@@ -57,7 +61,7 @@ function AddQuestion({ count }) {
                         <Input
                             placeholder='Maria må chugge drikken sin'
                             id='name'
-
+                            mt="10px"
                             onFocus={() => {
                                 setCurrentStatus('info');
                                 setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
@@ -77,7 +81,7 @@ function AddQuestion({ count }) {
                             </Box>
 
                             <Button
-                                variant='ghost'
+
                                 colorScheme='red'
                                 onClick={() => {
                                     if (!(latestQuestion.length === 0)) {
