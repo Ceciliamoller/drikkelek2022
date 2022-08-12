@@ -59,7 +59,6 @@ function Addmembers({ newColorSceme }) {
                 onFocus="this.value=''"
                 onChange={(event) => setLatestMember(event.target.value)} />
 
-
             </ModalBody>
 
             <ModalFooter>
