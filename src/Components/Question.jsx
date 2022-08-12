@@ -22,7 +22,7 @@ import {
 
 import React, { useState } from "react";
 
-import { HiPlusSm } from 'react-icons/hi';
+import { IoArrowBackCircle } from 'react-icons/io5';
 import Settings from "./Settings";
 import questions from "../Questions";
 import { difficulty } from "./Droyhetsskala";
@@ -180,7 +180,6 @@ function Question() {
       onClick={
         () => {
 
-
           if (count === 79) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
@@ -192,7 +191,6 @@ function Question() {
             setContent(customQuestion);
             setHeader("Utfordring");
           }
-
 
           else {
             setCount(count + 1);
@@ -219,7 +217,9 @@ function Question() {
         <AddQuestion count={count}> </AddQuestion>
 
         <Settings  ></Settings>
+
       </VStack>
+
     </Center >
   );
 

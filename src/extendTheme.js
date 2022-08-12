@@ -1,9 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const colors = {
-  background: {
-    500: "#134e6f",
-  },
+  
   red: {
     500: "#ff6150", 
   },

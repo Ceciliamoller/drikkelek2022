@@ -44,7 +44,7 @@ function Addmembers({ newColorSceme }) {
 
   return (
     <>
-      <Button colorScheme={newColorSceme} _hover={{ bg: '#f56038' }} size='lg' onClick={onOpen}>Legg til spillere
+      <Button fontSize='14px' as='kbd' color="#004e00" colorScheme={newColorSceme} _hover={{ bg: '#f56038' }} size='lg' onClick={onOpen}>Legg til spillere
 
         <Modal scrollBehavior="outside" isOpen={isOpen} onClose={onClose} size="xs" >
           <ModalOverlay />

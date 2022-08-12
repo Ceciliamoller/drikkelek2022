@@ -38,7 +38,7 @@ function Droyhetsskala({ myColor }) {
     var [infoText, setInfoText] = useState("");
     const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure(false);
     return (
-        <Box w='100vw' h='150px' >
+        <Box w='300px' h='150px'>
 
             <VStack mt='20px'>
                 <Heading color={myColor} size='s' mb="15px" >   Drøyhetsnivå: </Heading>
@@ -84,7 +84,8 @@ function Droyhetsskala({ myColor }) {
                     fontSize='30px'
                     color={myColor}
                     variant='ghost'
-                    ml="20px"
+                    ml="30px"
+
                     size='s'
                     _hover={{ bg: '' }}
                     _active={{
