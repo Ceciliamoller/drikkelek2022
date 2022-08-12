@@ -72,7 +72,7 @@ function MainPage() {
                                     Start
                                 </Button>
                                 <Addmembers></Addmembers>
-                                <Box position="absolute" left="60" bottom="8">
+                                <Box position="absolute" right="2" bottom="8">
                                     <EmailButton > </EmailButton>
                                 </Box>
 
