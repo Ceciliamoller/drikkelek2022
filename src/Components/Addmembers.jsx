@@ -17,7 +17,7 @@ import React, { useState } from "react";
 import members from "../Members";
 
 
-function Addmembers({ newColorSceme }) {
+function Addmembers({ buttonColor, textColor }) {
   //kilde: https://chakra-ui.com/docs/components/modal
 
   //const [members, setMembers] = useState([]);
@@ -44,7 +44,7 @@ function Addmembers({ newColorSceme }) {
 
   return (
     <>
-      <Button fontSize='14px' as='kbd' color="#004e00" colorScheme={newColorSceme} _hover={{}} size='lg' onClick={onOpen}>Legg til spillere
+      <Button w="200px" fontSize='14px' as='kbd' color={textColor} colorScheme={buttonColor} _hover={{}} size='lg' onClick={onOpen}>Legg til spillere
 
         <Modal scrollBehavior="outside" isOpen={isOpen} onClose={onClose} size="xs" >
           <ModalOverlay />

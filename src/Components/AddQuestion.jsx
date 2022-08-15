@@ -40,15 +40,17 @@ function AddQuestion({ count }) {
 
     return (
         <Button
-            w='200px'
+            color="#004e00"
             rightIcon={<HiPlusSm />}
             onClick={(e) => {
                 e.stopPropagation();
                 onOpen();
             }}
             variant='solid'
+            as='kbd'
+
             aria-label='Search database'
-            fontSize='18px'> Legg til utfordring
+            fontSize='14px'> Legg til utfordring
             <Modal isOpen={isOpen} onClose={onClose} size="xs" >
                 <ModalOverlay />
                 <ModalContent>
@@ -96,11 +98,14 @@ function AddQuestion({ count }) {
                                 }
 
                                 }>Legg til</Button>
-                            <Button mr={3} onClick={() => {
-                                onClose()
-                                setCurrentStatus('info');
-                                setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
-                            }}>
+                            <Button
+                                border="1px" borderColor="red"
+                                mr={3}
+                                onClick={() => {
+                                    onClose()
+                                    setCurrentStatus('info');
+                                    setAlertInfo('Utfordringen blandes med resten av utfordringene i spillet');
+                                }}>
                                 Lukk
                             </Button>
                         </HStack>

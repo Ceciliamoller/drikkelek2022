@@ -51,27 +51,25 @@ function MainPage() {
                                 <Switch colorScheme="red" id='glostema' defaultChecked="on" onChange={() => glostema = !glostema}> </Switch>
                             </HStack>
                         </VStack> :
-                        <Box>
+                        <Box mb="250px">
+                            <Box backgroundImage={TittelNidarus}
+                                id="y"
+                                backgroundSize="contain"
+                                w="90vw"
+                                h="30vh"
+                                backgroundRepeat="no-repeat"
+                                backgroundPosition="center"
+
+                            />
                             <VStack
                                 spacing={4}
-                                align='stretch'
-                            >
-                                <Box backgroundImage={TittelNidarus}
-                                    id="y"
-                                    h='30vh'
-                                    w="90vw"
-                                    backgroundRepeat="no-repeat"
-                                    backgroundSize="cover"
 
-                                    position="absolute"
-                                    left="5"
-                                    right="0"
-                                    bottom="400"
-                                />
-                                <Button as="kbd" color="#004e00" onClick={() => setStarted(true)}>
+                            >
+
+                                <Button w="200px" as="kbd" color="#004e00" onClick={() => setStarted(true)}>
                                     Start
                                 </Button>
-                                <Addmembers></Addmembers>
+                                <Addmembers textColor="#004e00"></Addmembers>
                                 <Box position="absolute" right="2" bottom="8">
                                     <EmailButton > </EmailButton>
                                 </Box>

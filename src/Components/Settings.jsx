@@ -40,13 +40,13 @@ function Settings() {
                     <ModalCloseButton />
                     <VStack spacing='45px'>
                         <Text>    </Text>
-                        <Addmembers newColorSceme='red'> </Addmembers>
+                        <Addmembers buttonColor='red' textColor="white"> </Addmembers>
                         <Drøyhetsskala color="black"> </Drøyhetsskala>
                     </VStack>
                     <ModalFooter>
 
 
-                        <Button mt='20px' mr={3} onClick={onSettingsClose}>
+                        <Button border="1px" borderColor="red" mt='20px' mr={3} onClick={onSettingsClose}>
                             Lukk
                         </Button>
 

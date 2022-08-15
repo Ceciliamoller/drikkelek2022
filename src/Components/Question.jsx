@@ -157,6 +157,7 @@ function Question() {
   const [filteredQuestions, setFilteredQuestions] = useState(getMemberQuestions(filterDifficulty(questionsCopy)));
   const [content, setContent] = useState(filteredQuestions[0].content);
   const [header, setHeader] = useState(filteredQuestions[0].header);
+  const [startInfo, setStartInfo] = useState("Klikk på skjermen for neste spørsmål")
   const customQuestion = filteredQuestions[count];
   //const header = filteredQuestions[count].header;
   //const content = filteredQuestions[count].content;
@@ -180,43 +181,47 @@ function Question() {
       onClick={
         () => {
 
-          if (count === 79) {
+          setCount(2);
+
+          if (count > 79) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
             setHeader("Ferdig");
           }
 
           else if (!(Object.keys(filteredQuestions[count]).includes("header"))) {
-            setCount(count + 1);
+            setStartInfo("");
             setFilteredQuestions(adjustIndexes(getMemberQuestions(filterDifficulty(questionsCopy))));
             setContent(customQuestion);
             setHeader("Utfordring");
           }
 
           else {
-            setCount(count + 1);
+            setStartInfo("");
             setFilteredQuestions(adjustIndexes(getMemberQuestions(filterDifficulty(questionsCopy))));
             setContent(filteredQuestions[count].content);
             setHeader(filteredQuestions[count].header);
-
           }
-
           console.log({ filteredQuestions });
-
         }
       }
     >
-      <VStack spacing={5} w="100%">
+      <VStack spacing={4} w="100%">
 
-        <Heading color="white" textAlign="center">{header}</Heading>
+        <Box mb="60px">
+          <Heading color="white" textAlign="center">{header}</Heading>
 
-        <Box pb="50px" >
           <Text color="white" fontSize='xl' textAlign="center"
             w="100%"
           >{content}  </Text>
+
         </Box>
         <AddQuestion count={count}> </AddQuestion>
 
         <Settings  ></Settings>
+
+        <Box position="absolute" bottom="10" bg="white" fontSize='14' textAlign="center" as='kbd' color="#004e00"
+          w="95%"
+        >{startInfo}  </Box>
 
       </VStack>
 
