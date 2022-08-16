@@ -44,7 +44,7 @@ function MainPage() {
                             <Box mt="150px"  >
                                 <Droyhetsskala myColor='white' > </Droyhetsskala>
                             </Box>
-                            <Button as='kbd' color="#004e00" onClick={() => setFinalStarted(true)}> Lagre</Button>
+                            <Button onClick={() => setFinalStarted(true)}> Lagre</Button>
                             <HStack position="absolute" right="75px" spacing="10px">
 
                                 <Text as='kbd' ml='90px' fontSize="xl" color="white"> Gløs-tema: </Text>
@@ -66,10 +66,10 @@ function MainPage() {
 
                             >
 
-                                <Button w="200px" as="kbd" color="#004e00" onClick={() => setStarted(true)}>
+                                <Button w="200px" onClick={() => setStarted(true)}>
                                     Start
                                 </Button>
-                                <Addmembers textColor="#004e00"></Addmembers>
+                                <Addmembers textColor="black"></Addmembers>
                                 <Box position="absolute" right="2" bottom="8">
                                     <EmailButton > </EmailButton>
                                 </Box>

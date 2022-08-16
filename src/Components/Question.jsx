@@ -4,25 +4,11 @@ import {
   VStack,
   Text,
   Center,
-  useDisclosure,
-  Button,
-  HStack,
-  Modal,
-  ModalContent,
-  ModalOverlay,
-  ModalCloseButton,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  AlertIcon,
-  Alert,
-  Input,
 } from "@chakra-ui/react";
 
 
 import React, { useState } from "react";
 
-import { IoArrowBackCircle } from 'react-icons/io5';
 import Settings from "./Settings";
 import questions from "../Questions";
 import { difficulty } from "./Droyhetsskala";
@@ -30,22 +16,6 @@ import members from "../Members";
 import { glostema } from "./MainPage";
 import AddQuestion from "./AddQuestion";
 
-function adjustIndexes2(array, index) {
-
-  array = array.filter(n => n !== undefined)
-
-  for (var i = index; i < array.length; i++) {
-    var e = array[i];
-
-    if (!(Object.keys(e).includes("value"))) { //for hvert element som fjernes velges og fjernes hvert egendefinerte spm. De settes inn igjen en index høyere.
-      // dette gjøres med alle egendefinerte spm som ligger bak elementet som ble fjernet i listen
-      array.splice(i, 1);
-      array.splice(i + 1, 0, e);
-
-    }
-  }
-  return array;
-}
 
 function adjustIndexes(array) { //fjerner hvert egendefinerte spm og detter dem inn på indexen de hører til på.
   //console.log("array before adjusting: ", array);
@@ -181,7 +151,7 @@ function Question() {
       onClick={
         () => {
 
-          setCount(2);
+          setCount(count + 1);
 
           if (count > 79) {
             setContent("Det var alle spørsmålene. Ha en fin kveld videre!");
@@ -219,7 +189,7 @@ function Question() {
 
         <Settings  ></Settings>
 
-        <Box position="absolute" bottom="10" bg="white" fontSize='14' textAlign="center" as='kbd' color="#004e00"
+        <Box position="absolute" bottom="10" bg="white" textAlign="center"
           w="95%"
         >{startInfo}  </Box>
 

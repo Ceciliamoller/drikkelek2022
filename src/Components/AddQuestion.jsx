@@ -40,17 +40,15 @@ function AddQuestion({ count }) {
 
     return (
         <Button
-            color="#004e00"
+
             rightIcon={<HiPlusSm />}
             onClick={(e) => {
                 e.stopPropagation();
                 onOpen();
             }}
             variant='solid'
-            as='kbd'
-
             aria-label='Search database'
-            fontSize='14px'> Legg til utfordring
+        > Legg til utfordring
             <Modal isOpen={isOpen} onClose={onClose} size="xs" >
                 <ModalOverlay />
                 <ModalContent>

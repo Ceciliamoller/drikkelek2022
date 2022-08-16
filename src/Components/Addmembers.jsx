@@ -44,7 +44,7 @@ function Addmembers({ buttonColor, textColor }) {
 
   return (
     <>
-      <Button w="200px" fontSize='14px' as='kbd' color={textColor} colorScheme={buttonColor} _hover={{}} size='lg' onClick={onOpen}>Legg til spillere
+      <Button w="200px" color={textColor} colorScheme={buttonColor} _hover={{}} onClick={onOpen}>Legg til spillere
 
         <Modal scrollBehavior="outside" isOpen={isOpen} onClose={onClose} size="xs" >
           <ModalOverlay />
