@@ -189,7 +189,7 @@ function Question() {
 
         <Settings  ></Settings>
 
-        <Box position="absolute" bottom="10" bg="white" textAlign="center"
+        <Box position="absolute" bottom="10" bg="white" color="#043704" textAlign="center"
           w="95%"
         >{startInfo}  </Box>
 

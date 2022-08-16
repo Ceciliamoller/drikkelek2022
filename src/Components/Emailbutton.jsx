@@ -49,7 +49,7 @@ function EmailButton() {
                 aria-label='EmailButton'
                 leftIcon={< AiOutlineMail />}
                 fontSize='40px'
-                color='black'
+                color='#043704'
                 variant='ghost'
                 _hover={{}}
                 onClick={(e) => {

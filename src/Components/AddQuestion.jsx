@@ -30,7 +30,7 @@ function AddQuestion({ count }) {
 
     function addQuestion(questionContent) {
 
-        var rand_index = Math.floor(Math.random() * ((count + 11) - (count + 1) + 1) + (count + 1)) //tall mellom count+1 og count+11
+        var rand_index = Math.floor(Math.random() * ((count + 11) - (count + 3) + 1) + (count + 3)) //tall mellom count+1 og count+11
         var question = [questionContent, rand_index]
         questions.splice(rand_index, 0, question);
         console.log("custom question placed at index: ", rand_index);
@@ -47,12 +47,13 @@ function AddQuestion({ count }) {
                 onOpen();
             }}
             variant='solid'
+            color="#043704"
             aria-label='Search database'
         > Legg til utfordring
             <Modal isOpen={isOpen} onClose={onClose} size="xs" >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Legg til utfordring</ModalHeader>
+                    <ModalHeader >Legg til utfordring</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <Alert status={currentStatus}>

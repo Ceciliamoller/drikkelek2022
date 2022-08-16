@@ -81,7 +81,12 @@ function Addmembers({ buttonColor, textColor }) {
 
                   }>Legg til</Button>
 
-                <Button variant='outline' mr={3} onClick={onClose}>
+                <Button
+                  border="1px"
+                  borderColor="red"
+                  variant='outline'
+                  mr={3}
+                  onClick={onClose}>
                   Lukk
                 </Button>
               </HStack>
