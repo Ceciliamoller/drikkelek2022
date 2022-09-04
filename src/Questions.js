@@ -453,12 +453,7 @@ const questions = [ // er const bedre?
   content:"memb: gi et kompliment til hver person i rommet. Skål for komplimentene!",
   glos:"0", 
  }, 
- {
-  header: "Navn-spesifikt", 
-  value: "0", 
-  content:"memb, hva er de 3 viktigste egenskapene du ser etter i en partner?",
-  glos:"1", 
- }, 
+
  {
   header: "Navn-spesifikt", 
   value: "0", 
@@ -664,7 +659,7 @@ const questions = [ // er const bedre?
   glos:"0", 
  }, 
  {
-  header: "Navn-spesifikt", 
+  header: "Utfordring", 
   value: "2", 
   content:"Drikk en slurk for hver pulbare person i rommet",
   glos:"0", 
@@ -1115,7 +1110,7 @@ const questions = [ // er const bedre?
  }, 
  {
   header: "Pekelek", 
-  value: "2", 
+  value: "3", 
   content:"Personen som onanerte sist kan dele ut 4 slurker",
   glos:"2", 
  }, 

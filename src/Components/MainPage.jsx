@@ -2,7 +2,7 @@
 import "../App.css";
 import React, { useState } from "react";
 import {
-    Center, Button, useDisclosure, VStack, Box, Switch, Text, FormLabel, HStack, Image, extendTheme,
+    Center, Button, VStack, Box, Switch, Text, HStack,
 } from "@chakra-ui/react";
 
 import Question from "../Components/Question";
@@ -14,15 +14,17 @@ import TittelNidarus from '../Assets/TittelNidarus.PNG';
 import EmailButton from "./Emailbutton";
 
 
+
 var glostema = true;
 
 function MainPage() {
 
-    const { isOpen, onOpen, onClose } = useDisclosure(false);
+    //const { isOpen, onOpen, onClose } = useDisclosure(false);
 
     //const [newGlostema, setNewGlostema] = useState(true);
     const [started, setStarted] = useState(false);
     const [finalStarted, setFinalStarted] = useState(false);
+
 
 
     return (

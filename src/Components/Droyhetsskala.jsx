@@ -9,17 +9,8 @@ import {
     Heading,
     VStack,
     HStack,
-    Modal,
-    ModalContent,
-    ModalOverlay,
-    ModalCloseButton,
-    ModalHeader,
-    ModalFooter,
     useDisclosure,
     Button,
-    Alert,
-    AlertIcon,
-    Input,
 
 
 } from '@chakra-ui/react'

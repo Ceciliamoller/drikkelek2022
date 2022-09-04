@@ -1,10 +1,6 @@
 import {
-    Box,
     Button,
-    VStack,
-    Text,
     Center,
-    HStack,
     Modal,
     ModalContent,
     ModalOverlay,
