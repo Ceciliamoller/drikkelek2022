@@ -9,7 +9,7 @@ import Question from "../Components/Question";
 import Addmembers from "../Components/Addmembers";
 import Droyhetsskala from "./Droyhetsskala";
 
-import StartsideNidarus from '../Assets/NidarusStart.gif';
+import StartsideNidarus from '../Assets/NidarusStart.PNG';
 import TittelNidarus from '../Assets/TittelNidarus.PNG';
 import EmailButton from "./Emailbutton";
 
