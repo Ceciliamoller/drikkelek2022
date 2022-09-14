@@ -156,12 +156,6 @@ const questions = [ // er const bedre?
  {
   header: "Jeg har aldri", 
   value: "0", 
-  content:"Jeg har aldri vært på pendelnasj",
-  glos:"1", 
- }, 
- {
-  header: "Jeg har aldri", 
-  value: "0", 
   content:"Jeg har aldri tatt en taktisk kont",
   glos:"1", 
  }, 
@@ -979,12 +973,6 @@ const questions = [ // er const bedre?
  {
   header: "Pekelek", 
   value: "0", 
-  content:"Alle som har bursdag denne måneden kan dele ut 3 slurker. ",
-  glos:"0", 
- }, 
- {
-  header: "Pekelek", 
-  value: "0", 
   content:"Hvem ville ikke tatt abort?",
   glos:"0", 
  }, 
@@ -1207,7 +1195,7 @@ const questions = [ // er const bedre?
  {
   header: "Navn-spesifikt", 
   value: "3", 
-  content:"Memb, kyss en i rommet. Personen kan dele ut 4 slurker. ",
+  content:"memb, kyss en i rommet. Personen kan dele ut 4 slurker. ",
   glos:"0", 
  }, 
  {
@@ -1219,13 +1207,13 @@ const questions = [ // er const bedre?
  {
   header: "Pekelek", 
   value: "1", 
-  content:"Hvem er den største playeren ",
+  content:"Hvem er den største playeren?",
   glos:"0", 
  }, 
  {
   header: "Navn-spesifikt", 
   value: "1", 
-  content:"Memb, hvem skal chugge med deg?",
+  content:"memb, hvem skal chugge med deg?",
   glos:"0", 
  }, 
  {
